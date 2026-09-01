@@ -17,16 +17,23 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install Capacitor
         run: |
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
 
+      - name: Prepare web files
+        run: |
+          mkdir -p www
+          cp index.html www/
+          cp manifest.json www/
+          cp sw.js www/
+
       - name: Create Android project
         run: |
-          npx cap init "Metal Weight" "com.anthony.metalweight" --web-dir .
+          npx cap init "Metal Weight" "com.anthony.metalweight" --web-dir www
           npx cap add android
 
       - name: Sync files
@@ -45,6 +52,10 @@ jobs:
           ./gradlew assembleDebug
 
       - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Metal-Weight-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
         uses: actions/upload-artifact@v4
         with:
           name: Metal-Weight-APK

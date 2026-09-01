@@ -27,9 +27,6 @@ body{
 }
 
 .top{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
   margin-bottom:18px;
 }
 
@@ -67,6 +64,13 @@ label{
   margin-bottom:14px;
 }
 
+.quantity-row{
+  display:grid;
+  grid-template-columns:minmax(110px,0.75fr) minmax(165px,1.25fr);
+  gap:10px;
+  margin-bottom:2px;
+}
+
 input,
 select,
 button{
@@ -94,35 +98,34 @@ select:focus{
   outline-offset:1px;
 }
 
-.actions{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin-top:14px;
-}
-
-button{
-  cursor:pointer;
-  font-weight:700;
-}
-
-.primary{
-  background:#111827;
-  color:white;
-  border-color:#111827;
-}
-
-.danger{
-  background:#fff;
+.qty-label{
+  display:flex;
+  align-items:center;
+  padding:0 13px;
+  height:50px;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+  background:#f9fafb;
+  color:#6b7280;
+  font-size:15px;
 }
 
 .result{
   background:#111827;
   color:white;
   border-radius:18px;
-  padding:24px 18px;
+  padding:22px 18px;
   margin-top:14px;
+}
+
+.result-item{
   text-align:center;
+}
+
+.result-divider{
+  height:1px;
+  background:#374151;
+  margin:18px 0;
 }
 
 .result-title{
@@ -132,16 +135,34 @@ button{
 }
 
 .result .num{
-  font-size:42px;
+  font-size:38px;
   font-weight:800;
   line-height:1.1;
   word-break:break-word;
+}
+
+.total .num{
+  font-size:44px;
 }
 
 .result .unit{
   font-size:15px;
   color:#d1d5db;
   margin-top:7px;
+}
+
+.reset-area{
+  margin-top:12px;
+}
+
+button{
+  cursor:pointer;
+  font-weight:700;
+}
+
+.reset-btn{
+  background:white;
+  color:#111827;
 }
 
 .note{
@@ -161,7 +182,6 @@ button{
   background:#fff;
 }
 
-/* Small phones */
 @media(max-width:420px){
 
   .wrap{
@@ -172,14 +192,16 @@ button{
     padding:15px;
   }
 
-  .row{
+  .row,
+  .quantity-row{
     grid-template-columns:minmax(95px,0.7fr) minmax(155px,1.3fr);
     gap:8px;
   }
 
   input,
   select,
-  button{
+  button,
+  .qty-label{
     height:48px;
   }
 
@@ -190,15 +212,11 @@ button{
   }
 
   .result .num{
-    font-size:36px;
+    font-size:34px;
   }
 
-  .actions{
-    gap:8px;
-  }
-
-  button{
-    font-size:14px;
+  .total .num{
+    font-size:40px;
   }
 }
 </style>
@@ -209,11 +227,9 @@ button{
 <div class="wrap">
 
   <div class="top">
-    <div>
-      <h1>Metal Plate Weight</h1>
-      <div class="sub">
-        Steel Plate Weight Calculator · 铁板重量计算器
-      </div>
+    <h1>Metal Plate Weight</h1>
+    <div class="sub">
+      Steel Plate Weight Calculator · 铁板重量计算器
     </div>
   </div>
 
@@ -226,16 +242,13 @@ button{
   <div class="card">
 
     <label>Length 长度</label>
-
     <div class="row">
-
       <input
         id="L"
         type="number"
         inputmode="decimal"
         value="1"
         step="any"
-        maxlength="7"
       >
 
       <select id="Lu">
@@ -245,21 +258,17 @@ button{
         <option value="ft">Feet (ft)</option>
         <option value="in">Inch (in)</option>
       </select>
-
     </div>
 
 
     <label>Width 宽度</label>
-
     <div class="row">
-
       <input
         id="W"
         type="number"
         inputmode="decimal"
         value="1"
         step="any"
-        maxlength="7"
       >
 
       <select id="Wu">
@@ -269,21 +278,17 @@ button{
         <option value="ft">Feet (ft)</option>
         <option value="in">Inch (in)</option>
       </select>
-
     </div>
 
 
     <label>Thickness 厚度</label>
-
     <div class="row">
-
       <input
         id="T"
         type="number"
         inputmode="decimal"
         value="1"
         step="any"
-        maxlength="7"
       >
 
       <select id="Tu">
@@ -293,27 +298,24 @@ button{
         <option value="ft">Feet (ft)</option>
         <option value="in">Inch (in)</option>
       </select>
-
     </div>
 
 
-    <div class="actions">
+    <label>Quantity 数量</label>
+    <div class="quantity-row">
 
-      <button
-        class="primary"
-        id="calcBtn"
-        type="button"
+      <input
+        id="Q"
+        type="number"
+        inputmode="numeric"
+        value="1"
+        min="1"
+        step="1"
       >
-        Calculate 计算
-      </button>
 
-      <button
-        class="danger"
-        id="resetBtn"
-        type="button"
-      >
-        Reset 清除
-      </button>
+      <div class="qty-label">
+        Pieces (PCS) · 件
+      </div>
 
     </div>
 
@@ -322,17 +324,54 @@ button{
 
   <div class="result">
 
-    <div class="result-title">
-      Weight 重量
+    <div class="result-item">
+
+      <div class="result-title">
+        Single Weight 单件重量
+      </div>
+
+      <div class="num" id="singleKg">
+        7.850
+      </div>
+
+      <div class="unit">
+        KG
+      </div>
+
     </div>
 
-    <div class="num" id="kg">
-      7.850
+
+    <div class="result-divider"></div>
+
+
+    <div class="result-item total">
+
+      <div class="result-title">
+        Total Weight 总重量
+      </div>
+
+      <div class="num" id="totalKg">
+        7.850
+      </div>
+
+      <div class="unit">
+        KG
+      </div>
+
     </div>
 
-    <div class="unit">
-      KG
-    </div>
+  </div>
+
+
+  <div class="reset-area">
+
+    <button
+      class="reset-btn"
+      id="resetBtn"
+      type="button"
+    >
+      Reset 清除
+    </button>
 
   </div>
 
@@ -375,6 +414,9 @@ const widthInput =
 const thicknessInput =
   document.getElementById('T');
 
+const quantityInput =
+  document.getElementById('Q');
+
 
 const lengthUnit =
   document.getElementById('Lu');
@@ -386,15 +428,43 @@ const thicknessUnit =
   document.getElementById('Tu');
 
 
-const resultBox =
-  document.getElementById('kg');
+const singleBox =
+  document.getElementById('singleKg');
 
-const calcBtn =
-  document.getElementById('calcBtn');
+const totalBox =
+  document.getElementById('totalKg');
 
 const resetBtn =
   document.getElementById('resetBtn');
 
+
+function formatWeight(kg){
+
+  if(kg === 0){
+    return '0.000';
+  }
+
+  if(kg < 1){
+
+    return kg.toLocaleString(
+      'en-US',
+      {
+        minimumFractionDigits:3,
+        maximumFractionDigits:6
+      }
+    );
+
+  }
+
+  return kg.toLocaleString(
+    'en-US',
+    {
+      minimumFractionDigits:3,
+      maximumFractionDigits:3
+    }
+  );
+
+}
 
 
 function calculateWeight(){
@@ -407,6 +477,13 @@ function calculateWeight(){
 
   const T =
     parseFloat(thicknessInput.value) || 0;
+
+  let Q =
+    parseInt(quantityInput.value,10) || 1;
+
+  if(Q < 1){
+    Q = 1;
+  }
 
 
   const lengthMetres =
@@ -425,45 +502,21 @@ function calculateWeight(){
     thicknessMetres;
 
 
-  const kg =
+  const singleKg =
     volume * 7850;
 
 
-  if(kg === 0){
-
-    resultBox.textContent = '0.000';
-
-    return;
-
-  }
+  const totalKg =
+    singleKg * Q;
 
 
-  if(kg < 1){
+  singleBox.textContent =
+    formatWeight(singleKg);
 
-    resultBox.textContent =
-      kg.toLocaleString(
-        'en-US',
-        {
-          minimumFractionDigits:3,
-          maximumFractionDigits:6
-        }
-      );
-
-  }else{
-
-    resultBox.textContent =
-      kg.toLocaleString(
-        'en-US',
-        {
-          minimumFractionDigits:3,
-          maximumFractionDigits:3
-        }
-      );
-
-  }
+  totalBox.textContent =
+    formatWeight(totalKg);
 
 }
-
 
 
 function resetForm(){
@@ -471,6 +524,7 @@ function resetForm(){
   lengthInput.value = 1;
   widthInput.value = 1;
   thicknessInput.value = 1;
+  quantityInput.value = 1;
 
   lengthUnit.value = 'm';
   widthUnit.value = 'm';
@@ -481,24 +535,17 @@ function resetForm(){
 }
 
 
-
-calcBtn.addEventListener(
-  'click',
-  calculateWeight
-);
-
-
 resetBtn.addEventListener(
   'click',
   resetForm
 );
 
 
-
 [
   lengthInput,
   widthInput,
-  thicknessInput
+  thicknessInput,
+  quantityInput
 ]
 .forEach(function(element){
 
@@ -508,7 +555,6 @@ resetBtn.addEventListener(
   );
 
 });
-
 
 
 [
@@ -525,6 +571,32 @@ resetBtn.addEventListener(
 
 });
 
+
+[
+  lengthInput,
+  widthInput,
+  thicknessInput,
+  quantityInput
+]
+.forEach(function(element){
+
+  element.addEventListener(
+    'focus',
+    function(){
+      setTimeout(function(){
+        element.select();
+      },50);
+    }
+  );
+
+  element.addEventListener(
+    'click',
+    function(){
+      element.select();
+    }
+  );
+
+});
 
 
 let deferredPrompt = null;
@@ -565,7 +637,6 @@ installBtn.addEventListener(
 
   }
 );
-
 
 
 if('serviceWorker' in navigator){

@@ -57,18 +57,12 @@ label{
   margin:0 0 7px;
 }
 
-.row{
-  display:grid;
-  grid-template-columns:minmax(110px,0.75fr) minmax(165px,1.25fr);
-  gap:10px;
-  margin-bottom:14px;
-}
-
+.row,
 .quantity-row{
   display:grid;
   grid-template-columns:minmax(110px,0.75fr) minmax(165px,1.25fr);
   gap:10px;
-  margin-bottom:2px;
+  margin-bottom:14px;
 }
 
 input,
@@ -151,7 +145,10 @@ select:focus{
   margin-top:7px;
 }
 
-.reset-area{
+.action-area{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
   margin-top:12px;
 }
 
@@ -160,9 +157,112 @@ button{
   font-weight:700;
 }
 
+.save-btn{
+  background:#111827;
+  color:white;
+  border-color:#111827;
+}
+
 .reset-btn{
   background:white;
   color:#111827;
+}
+
+.history-card{
+  margin-top:14px;
+}
+
+.history-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:12px;
+}
+
+.history-title{
+  font-size:18px;
+  font-weight:750;
+}
+
+.clear-history{
+  width:auto;
+  height:38px;
+  padding:0 12px;
+  font-size:13px;
+  color:#991b1b;
+  background:#fff;
+}
+
+.empty-history{
+  color:#9ca3af;
+  text-align:center;
+  font-size:14px;
+  padding:18px 5px;
+}
+
+.history-item{
+  border:1px solid #e5e7eb;
+  border-radius:14px;
+  padding:13px;
+  margin-top:10px;
+  background:#f9fafb;
+}
+
+.history-main{
+  cursor:pointer;
+}
+
+.history-dimensions{
+  font-size:15px;
+  font-weight:700;
+  line-height:1.5;
+}
+
+.history-info{
+  color:#6b7280;
+  font-size:13px;
+  margin-top:5px;
+  line-height:1.5;
+}
+
+.history-weight{
+  margin-top:8px;
+  font-size:14px;
+}
+
+.history-weight strong{
+  color:#111827;
+}
+
+.history-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:10px;
+}
+
+.history-time{
+  font-size:11px;
+  color:#9ca3af;
+}
+
+.delete-btn{
+  width:auto;
+  height:34px;
+  padding:0 11px;
+  font-size:12px;
+  background:#fff;
+  color:#991b1b;
+}
+
+.saved-message{
+  display:none;
+  text-align:center;
+  color:#047857;
+  font-size:13px;
+  font-weight:600;
+  margin-top:9px;
 }
 
 .note{
@@ -218,6 +318,11 @@ button{
   .total .num{
     font-size:40px;
   }
+
+  .action-area{
+    gap:8px;
+  }
+
 }
 </style>
 </head>
@@ -228,10 +333,12 @@ button{
 
   <div class="top">
     <h1>Metal Plate Weight</h1>
+
     <div class="sub">
       Steel Plate Weight Calculator · 铁板重量计算器
     </div>
   </div>
+
 
   <div class="card install" id="installBox">
     <button id="installBtn">
@@ -239,10 +346,13 @@ button{
     </button>
   </div>
 
+
   <div class="card">
 
     <label>Length 长度</label>
+
     <div class="row">
+
       <input
         id="L"
         type="number"
@@ -258,11 +368,14 @@ button{
         <option value="ft">Feet (ft)</option>
         <option value="in">Inch (in)</option>
       </select>
+
     </div>
 
 
     <label>Width 宽度</label>
+
     <div class="row">
+
       <input
         id="W"
         type="number"
@@ -278,11 +391,14 @@ button{
         <option value="ft">Feet (ft)</option>
         <option value="in">Inch (in)</option>
       </select>
+
     </div>
 
 
     <label>Thickness 厚度</label>
+
     <div class="row">
+
       <input
         id="T"
         type="number"
@@ -292,16 +408,34 @@ button{
       >
 
       <select id="Tu">
-        <option value="mm" selected>Millimeter (mm)</option>
-        <option value="cm">Centimeter (cm)</option>
-        <option value="m">Meter (m)</option>
-        <option value="ft">Feet (ft)</option>
-        <option value="in">Inch (in)</option>
+
+        <option value="mm" selected>
+          Millimeter (mm)
+        </option>
+
+        <option value="cm">
+          Centimeter (cm)
+        </option>
+
+        <option value="m">
+          Meter (m)
+        </option>
+
+        <option value="ft">
+          Feet (ft)
+        </option>
+
+        <option value="in">
+          Inch (in)
+        </option>
+
       </select>
+
     </div>
 
 
     <label>Quantity 数量</label>
+
     <div class="quantity-row">
 
       <input
@@ -363,7 +497,15 @@ button{
   </div>
 
 
-  <div class="reset-area">
+  <div class="action-area">
+
+    <button
+      class="save-btn"
+      id="saveBtn"
+      type="button"
+    >
+      Save Record 保存记录
+    </button>
 
     <button
       class="reset-btn"
@@ -372,6 +514,36 @@ button{
     >
       Reset 清除
     </button>
+
+  </div>
+
+  <div
+    class="saved-message"
+    id="savedMessage"
+  >
+    ✓ Record saved 已保存
+  </div>
+
+
+  <div class="card history-card">
+
+    <div class="history-header">
+
+      <div class="history-title">
+        History 历史记录
+      </div>
+
+      <button
+        class="clear-history"
+        id="clearHistoryBtn"
+        type="button"
+      >
+        Clear All 全部清除
+      </button>
+
+    </div>
+
+    <div id="historyList"></div>
 
   </div>
 
@@ -405,6 +577,15 @@ const factor = {
 };
 
 
+const unitLabel = {
+  m: 'm',
+  cm: 'cm',
+  mm: 'mm',
+  ft: 'ft',
+  in: 'in'
+};
+
+
 const lengthInput =
   document.getElementById('L');
 
@@ -434,8 +615,21 @@ const singleBox =
 const totalBox =
   document.getElementById('totalKg');
 
+
+const saveBtn =
+  document.getElementById('saveBtn');
+
 const resetBtn =
   document.getElementById('resetBtn');
+
+const historyList =
+  document.getElementById('historyList');
+
+const clearHistoryBtn =
+  document.getElementById('clearHistoryBtn');
+
+const savedMessage =
+  document.getElementById('savedMessage');
 
 
 function formatWeight(kg){
@@ -467,7 +661,7 @@ function formatWeight(kg){
 }
 
 
-function calculateWeight(){
+function getCalculation(){
 
   const L =
     parseFloat(lengthInput.value) || 0;
@@ -505,16 +699,35 @@ function calculateWeight(){
   const singleKg =
     volume * 7850;
 
-
   const totalKg =
     singleKg * Q;
 
 
+  return {
+    L,
+    W,
+    T,
+    Q,
+    Lu:lengthUnit.value,
+    Wu:widthUnit.value,
+    Tu:thicknessUnit.value,
+    singleKg,
+    totalKg
+  };
+
+}
+
+
+function calculateWeight(){
+
+  const data =
+    getCalculation();
+
   singleBox.textContent =
-    formatWeight(singleKg);
+    formatWeight(data.singleKg);
 
   totalBox.textContent =
-    formatWeight(totalKg);
+    formatWeight(data.totalKg);
 
 }
 
@@ -535,9 +748,319 @@ function resetForm(){
 }
 
 
+function getHistory(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(
+        'metalWeightHistory'
+      )
+    ) || [];
+
+  }catch(e){
+
+    return [];
+
+  }
+
+}
+
+
+function saveHistory(history){
+
+  localStorage.setItem(
+    'metalWeightHistory',
+    JSON.stringify(history)
+  );
+
+}
+
+
+function saveRecord(){
+
+  const data =
+    getCalculation();
+
+
+  if(
+    data.L <= 0 ||
+    data.W <= 0 ||
+    data.T <= 0
+  ){
+
+    alert(
+      'Please enter valid dimensions.\n请输入正确尺寸。'
+    );
+
+    return;
+
+  }
+
+
+  const history =
+    getHistory();
+
+
+  history.unshift({
+
+    id: Date.now(),
+
+    L: data.L,
+    W: data.W,
+    T: data.T,
+    Q: data.Q,
+
+    Lu: data.Lu,
+    Wu: data.Wu,
+    Tu: data.Tu,
+
+    singleKg: data.singleKg,
+    totalKg: data.totalKg,
+
+    time:
+      new Date().toLocaleString()
+
+  });
+
+
+  if(history.length > 50){
+    history.length = 50;
+  }
+
+
+  saveHistory(history);
+
+  renderHistory();
+
+
+  savedMessage.style.display =
+    'block';
+
+
+  setTimeout(function(){
+
+    savedMessage.style.display =
+      'none';
+
+  },1500);
+
+}
+
+
+function loadRecord(id){
+
+  const history =
+    getHistory();
+
+  const item =
+    history.find(
+      record => record.id === id
+    );
+
+
+  if(!item){
+    return;
+  }
+
+
+  lengthInput.value =
+    item.L;
+
+  widthInput.value =
+    item.W;
+
+  thicknessInput.value =
+    item.T;
+
+  quantityInput.value =
+    item.Q;
+
+
+  lengthUnit.value =
+    item.Lu;
+
+  widthUnit.value =
+    item.Wu;
+
+  thicknessUnit.value =
+    item.Tu;
+
+
+  calculateWeight();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+function deleteRecord(id){
+
+  let history =
+    getHistory();
+
+
+  history =
+    history.filter(
+      record => record.id !== id
+    );
+
+
+  saveHistory(history);
+
+  renderHistory();
+
+}
+
+
+function clearHistory(){
+
+  const history =
+    getHistory();
+
+
+  if(history.length === 0){
+    return;
+  }
+
+
+  const answer =
+    confirm(
+      'Clear all history?\n确定清除全部历史记录？'
+    );
+
+
+  if(!answer){
+    return;
+  }
+
+
+  localStorage.removeItem(
+    'metalWeightHistory'
+  );
+
+
+  renderHistory();
+
+}
+
+
+function renderHistory(){
+
+  const history =
+    getHistory();
+
+
+  historyList.innerHTML = '';
+
+
+  if(history.length === 0){
+
+    historyList.innerHTML =
+      '<div class="empty-history">No saved records · 暂无历史记录</div>';
+
+    return;
+
+  }
+
+
+  history.forEach(function(item){
+
+    const div =
+      document.createElement('div');
+
+    div.className =
+      'history-item';
+
+
+    div.innerHTML = `
+
+      <div
+        class="history-main"
+        onclick="loadRecord(${item.id})"
+      >
+
+        <div class="history-dimensions">
+
+          ${item.L} ${unitLabel[item.Lu]}
+          ×
+          ${item.W} ${unitLabel[item.Wu]}
+          ×
+          ${item.T} ${unitLabel[item.Tu]}
+
+        </div>
+
+        <div class="history-info">
+
+          Quantity 数量:
+          ${item.Q} PCS
+
+        </div>
+
+        <div class="history-weight">
+
+          Single:
+          <strong>
+            ${formatWeight(item.singleKg)} KG
+          </strong>
+
+          <br>
+
+          Total:
+          <strong>
+            ${formatWeight(item.totalKg)} KG
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <div class="history-bottom">
+
+        <div class="history-time">
+          ${item.time}
+        </div>
+
+        <button
+          class="delete-btn"
+          type="button"
+          onclick="event.stopPropagation();deleteRecord(${item.id})"
+        >
+          Delete 删除
+        </button>
+
+      </div>
+
+    `;
+
+
+    historyList.appendChild(div);
+
+  });
+
+}
+
+
+saveBtn.addEventListener(
+  'click',
+  saveRecord
+);
+
+
 resetBtn.addEventListener(
   'click',
   resetForm
+);
+
+
+clearHistoryBtn.addEventListener(
+  'click',
+  clearHistory
 );
 
 
@@ -583,16 +1106,23 @@ resetBtn.addEventListener(
   element.addEventListener(
     'focus',
     function(){
+
       setTimeout(function(){
+
         element.select();
+
       },50);
+
     }
   );
+
 
   element.addEventListener(
     'click',
     function(){
+
       element.select();
+
     }
   );
 
@@ -600,6 +1130,7 @@ resetBtn.addEventListener(
 
 
 let deferredPrompt = null;
+
 
 const installBox =
   document.getElementById('installBox');
@@ -649,6 +1180,8 @@ if('serviceWorker' in navigator){
 
 
 calculateWeight();
+
+renderHistory();
 
 </script>
 

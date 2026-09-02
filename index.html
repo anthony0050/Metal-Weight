@@ -42,7 +42,14 @@ body{
   padding:20px 16px 36px;
 }
 
-.top{
+
+/* TOP BAR */
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
   margin-bottom:18px;
 }
 
@@ -58,12 +65,48 @@ h1{
   margin-top:5px;
 }
 
+.menu-btn{
+  width:48px;
+  min-width:48px;
+  height:48px;
+  padding:0;
+  font-size:25px;
+  line-height:1;
+  background:white;
+  color:#111827;
+  border:1px solid #d1d5db;
+  border-radius:12px;
+}
+
+
+/* GENERAL */
+
 .card{
   background:white;
   border-radius:18px;
   padding:18px;
   margin:12px 0;
   box-shadow:0 3px 14px #0000000b;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+.page-title{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:4px;
+}
+
+.page-subtitle{
+  color:#6b7280;
+  font-size:13px;
+  margin-bottom:16px;
 }
 
 label{
@@ -112,6 +155,11 @@ select:focus{
   outline-offset:1px;
 }
 
+button{
+  cursor:pointer;
+  font-weight:700;
+}
+
 .qty-label{
   display:flex;
   align-items:center;
@@ -123,6 +171,13 @@ select:focus{
   color:#6b7280;
   font-size:15px;
 }
+
+.hidden{
+  display:none !important;
+}
+
+
+/* WEIGHT RESULT */
 
 .extra-info{
   background:#f9fafb;
@@ -186,11 +241,6 @@ select:focus{
   margin-top:12px;
 }
 
-button{
-  cursor:pointer;
-  font-weight:700;
-}
-
 .save-btn{
   background:#111827;
   color:white;
@@ -202,9 +252,25 @@ button{
   color:#111827;
 }
 
-.history-card{
-  margin-top:14px;
+.saved-message{
+  display:none;
+  text-align:center;
+  color:#047857;
+  font-size:13px;
+  font-weight:600;
+  margin-top:9px;
 }
+
+.note{
+  font-size:12px;
+  color:#6b7280;
+  line-height:1.6;
+  text-align:center;
+  margin-top:15px;
+}
+
+
+/* HISTORY */
 
 .history-header{
   display:flex;
@@ -232,7 +298,7 @@ button{
   color:#9ca3af;
   text-align:center;
   font-size:14px;
-  padding:18px 5px;
+  padding:28px 5px;
 }
 
 .history-item{
@@ -296,22 +362,247 @@ button{
   color:#991b1b;
 }
 
-.saved-message{
-  display:none;
-  text-align:center;
-  color:#047857;
-  font-size:13px;
-  font-weight:600;
-  margin-top:9px;
+
+/* CALCULATOR */
+
+.calculator{
+  max-width:420px;
+  margin:0 auto;
 }
 
-.note{
-  font-size:12px;
-  color:#6b7280;
-  line-height:1.6;
-  text-align:center;
-  margin-top:15px;
+.calc-body{
+  background:#111827;
+  border-radius:20px;
+  padding:16px;
 }
+
+.calc-memory{
+  min-height:22px;
+  text-align:right;
+  font-size:12px;
+  color:#9ca3af;
+  margin-bottom:4px;
+}
+
+.calc-display{
+  background:#1f2937;
+  color:white;
+  border-radius:14px;
+  min-height:90px;
+  padding:15px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:flex-end;
+  text-align:right;
+  overflow:hidden;
+  margin-bottom:14px;
+}
+
+.calc-display-value{
+  width:100%;
+  font-size:38px;
+  font-weight:650;
+  line-height:1.15;
+  overflow-wrap:anywhere;
+}
+
+.calc-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
+}
+
+.calc-btn{
+  height:58px;
+  border:0;
+  border-radius:14px;
+  font-size:19px;
+  font-weight:650;
+  background:#374151;
+  color:white;
+}
+
+.calc-btn.function{
+  background:#4b5563;
+}
+
+.calc-btn.operator{
+  background:#6b7280;
+}
+
+.calc-btn.equals{
+  background:white;
+  color:#111827;
+}
+
+.calc-btn.memory{
+  height:46px;
+  font-size:15px;
+}
+
+.calc-memory-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:9px;
+  margin-bottom:9px;
+}
+
+
+/* SETTINGS */
+
+.setting-block{
+  padding:14px 0;
+  border-bottom:1px solid #e5e7eb;
+}
+
+.setting-block:last-child{
+  border-bottom:0;
+}
+
+.setting-name{
+  font-weight:700;
+  margin-bottom:4px;
+}
+
+.setting-description{
+  color:#6b7280;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.coming-soon{
+  display:inline-block;
+  margin-top:8px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#f3f4f6;
+  color:#6b7280;
+  font-size:12px;
+}
+
+
+/* ABOUT */
+
+.about-logo{
+  text-align:center;
+  padding:8px 0 18px;
+}
+
+.about-app-name{
+  font-size:27px;
+  font-weight:850;
+}
+
+.about-version{
+  font-size:13px;
+  color:#6b7280;
+  margin-top:4px;
+}
+
+.about-section{
+  padding:14px 0;
+  border-top:1px solid #e5e7eb;
+}
+
+.about-label{
+  color:#6b7280;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+.about-value{
+  font-size:15px;
+  font-weight:650;
+  line-height:1.5;
+  overflow-wrap:anywhere;
+}
+
+.about-description{
+  color:#4b5563;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.internal-note{
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px;
+  font-size:12px;
+  line-height:1.6;
+  color:#6b7280;
+}
+
+
+/* DRAWER */
+
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  opacity:0;
+  visibility:hidden;
+  transition:0.25s;
+  z-index:998;
+}
+
+.drawer-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.drawer{
+  position:fixed;
+  top:0;
+  right:-310px;
+  width:290px;
+  max-width:86vw;
+  height:100vh;
+  background:white;
+  box-shadow:-6px 0 20px #00000025;
+  z-index:999;
+  transition:right 0.25s ease;
+  padding:18px;
+}
+
+.drawer.open{
+  right:0;
+}
+
+.drawer-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.drawer-title{
+  font-size:20px;
+  font-weight:750;
+}
+
+.drawer-close{
+  width:42px;
+  height:42px;
+  padding:0;
+  font-size:28px;
+  background:white;
+}
+
+.drawer-item{
+  text-align:left;
+  margin-bottom:10px;
+  background:#f9fafb;
+  color:#111827;
+}
+
+.drawer-item.active{
+  background:#111827;
+  color:white;
+}
+
+
+/* INSTALL */
 
 .install{
   display:none;
@@ -320,10 +611,6 @@ button{
 
 .install button{
   background:#fff;
-}
-
-.hidden{
-  display:none;
 }
 
 
@@ -364,86 +651,16 @@ button{
     font-size:40px;
   }
 
+  .calc-display-value{
+    font-size:34px;
+  }
+
+  .calc-btn{
+    height:55px;
+  }
+
 }
 
-.topbar{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-}
-
-.menu-btn{
-  width:48px;
-  min-width:48px;
-  height:48px;
-  padding:0;
-  font-size:25px;
-  line-height:1;
-  background:white;
-  color:#111827;
-  border:1px solid #d1d5db;
-}
-
-.drawer-overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.35);
-  opacity:0;
-  visibility:hidden;
-  transition:0.25s;
-  z-index:998;
-}
-
-.drawer-overlay.open{
-  opacity:1;
-  visibility:visible;
-}
-
-.drawer{
-  position:fixed;
-  top:0;
-  right:-290px;
-  width:280px;
-  max-width:85vw;
-  height:100vh;
-  background:white;
-  box-shadow:-6px 0 20px #00000025;
-  z-index:999;
-  transition:right 0.25s ease;
-  padding:18px;
-}
-
-.drawer.open{
-  right:0;
-}
-
-.drawer-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:20px;
-}
-
-.drawer-title{
-  font-size:20px;
-  font-weight:750;
-}
-
-.drawer-close{
-  width:42px;
-  height:42px;
-  padding:0;
-  font-size:28px;
-  background:white;
-}
-
-.drawer-item{
-  text-align:left;
-  margin-bottom:10px;
-  background:#f9fafb;
-  color:#111827;
-}
 </style>
 
 </head>
@@ -454,26 +671,39 @@ button{
 <div class="wrap">
 
 
-<div class="top topbar">
+  <!-- TOP -->
 
-  <div>
-    <h1>Metal Weight</h1>
+  <div class="topbar">
 
-    <div class="sub">
-      Metal Weight Calculator · 金属重量计算器
+    <div>
+
+      <h1 id="mainTitle">
+        Metal Weight
+      </h1>
+
+      <div
+        class="sub"
+        id="mainSubtitle"
+      >
+        Metal Weight Calculator · 金属重量计算器
+      </div>
+
     </div>
+
+
+    <button
+      id="menuBtn"
+      class="menu-btn"
+      type="button"
+    >
+      ☰
+    </button>
+
   </div>
 
-  <button
-    id="menuBtn"
-    class="menu-btn"
-    type="button"
-  >
-    ☰
-  </button>
 
-</div>
 
+  <!-- INSTALL -->
 
   <div
     class="card install"
@@ -487,465 +717,1118 @@ button{
   </div>
 
 
-  <div class="card">
 
+  <!-- METAL WEIGHT PAGE -->
 
-    <label>
-      Shape 类型
-    </label>
-
-    <div class="shape-row">
-
-      <select id="shape">
-
-        <option value="plate">
-          Plate 板材
-        </option>
-
-        <option value="roundTube">
-          Hollow Round Tube 空心圆管
-        </option>
-
-      </select>
-
-    </div>
-
-
-
-    <!-- PLATE -->
-
-    <div id="plateFields">
-
-
-      <label>
-        Length 长度
-      </label>
-
-      <div class="row">
-
-        <input
-          id="plateL"
-          type="number"
-          inputmode="decimal"
-          value="1"
-          step="any"
-        >
-
-        <select id="plateLu">
-
-          <option value="m">
-            Meter (m)
-          </option>
-
-          <option value="cm">
-            Centimeter (cm)
-          </option>
-
-          <option value="mm">
-            Millimeter (mm)
-          </option>
-
-          <option value="ft">
-            Feet (ft)
-          </option>
-
-          <option value="in">
-            Inch (in)
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <label>
-        Width 宽度
-      </label>
-
-      <div class="row">
-
-        <input
-          id="plateW"
-          type="number"
-          inputmode="decimal"
-          value="1"
-          step="any"
-        >
-
-        <select id="plateWu">
-
-          <option value="m">
-            Meter (m)
-          </option>
-
-          <option value="cm">
-            Centimeter (cm)
-          </option>
-
-          <option value="mm">
-            Millimeter (mm)
-          </option>
-
-          <option value="ft">
-            Feet (ft)
-          </option>
-
-          <option value="in">
-            Inch (in)
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <label>
-        Thickness 厚度
-      </label>
-
-      <div class="row">
-
-        <input
-          id="plateT"
-          type="number"
-          inputmode="decimal"
-          value="1"
-          step="any"
-        >
-
-        <select id="plateTu">
-
-          <option
-            value="mm"
-            selected
-          >
-            Millimeter (mm)
-          </option>
-
-          <option value="cm">
-            Centimeter (cm)
-          </option>
-
-          <option value="m">
-            Meter (m)
-          </option>
-
-          <option value="ft">
-            Feet (ft)
-          </option>
-
-          <option value="in">
-            Inch (in)
-          </option>
-
-        </select>
-
-      </div>
-
-
-    </div>
-
-
-
-    <!-- HOLLOW ROUND TUBE -->
-
-    <div
-      id="tubeFields"
-      class="hidden"
-    >
-
-
-      <label>
-        Outer Diameter 外径
-      </label>
-
-      <div class="row">
-
-        <input
-          id="tubeOD"
-          type="number"
-          inputmode="decimal"
-          value="800"
-          step="any"
-        >
-
-        <select id="tubeODu">
-
-          <option value="mm" selected>
-            Millimeter (mm)
-          </option>
-
-          <option value="cm">
-            Centimeter (cm)
-          </option>
-
-          <option value="m">
-            Meter (m)
-          </option>
-
-          <option value="ft">
-            Feet (ft)
-          </option>
-
-          <option value="in">
-            Inch (in)
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <label>
-        Length 长度
-      </label>
-
-      <div class="row">
-
-        <input
-          id="tubeL"
-          type="number"
-          inputmode="decimal"
-          value="1200"
-          step="any"
-        >
-
-        <select id="tubeLu">
-
-          <option value="mm" selected>
-            Millimeter (mm)
-          </option>
-
-          <option value="cm">
-            Centimeter (cm)
-          </option>
-
-          <option value="m">
-            Meter (m)
-          </option>
-
-          <option value="ft">
-            Feet (ft)
-          </option>
-
-          <option value="in">
-            Inch (in)
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <label>
-        Thickness 厚度
-      </label>
-
-      <div class="row">
-
-        <input
-          id="tubeT"
-          type="number"
-          inputmode="decimal"
-          value="5"
-          step="any"
-        >
-
-        <select id="tubeTu">
-
-          <option value="mm" selected>
-            Millimeter (mm)
-          </option>
-
-          <option value="cm">
-            Centimeter (cm)
-          </option>
-
-          <option value="m">
-            Meter (m)
-          </option>
-
-          <option value="ft">
-            Feet (ft)
-          </option>
-
-          <option value="in">
-            Inch (in)
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="extra-info">
-
-        Inner Diameter 内径:
-
-        <strong id="innerDiameter">
-          790.000 mm
-        </strong>
-
-      </div>
-
-
-    </div>
-
-
-
-    <br>
-
-
-    <label>
-      Quantity 数量
-    </label>
-
-    <div class="quantity-row">
-
-      <input
-        id="Q"
-        type="number"
-        inputmode="numeric"
-        value="1"
-        min="1"
-        step="1"
-      >
-
-      <div class="qty-label">
-        Pieces (PCS) · 件
-      </div>
-
-    </div>
-
-
-  </div>
-
-
-
-  <div class="result">
-
-
-    <div class="result-item">
-
-      <div class="result-title">
-        Single Weight 单件重量
-      </div>
-
-      <div
-        class="num"
-        id="singleKg"
-      >
-        7.850
-      </div>
-
-      <div class="unit">
-        KG
-      </div>
-
-    </div>
-
-
-    <div class="result-divider"></div>
-
-
-    <div class="result-item total">
-
-      <div class="result-title">
-        Total Weight 总重量
-      </div>
-
-      <div
-        class="num"
-        id="totalKg"
-      >
-        7.850
-      </div>
-
-      <div class="unit">
-        KG
-      </div>
-
-    </div>
-
-
-  </div>
-
-
-
-  <div class="action-area">
-
-    <button
-      class="save-btn"
-      id="saveBtn"
-      type="button"
-    >
-      Save Record 保存记录
-    </button>
-
-    <button
-      class="reset-btn"
-      id="resetBtn"
-      type="button"
-    >
-      Reset 清除
-    </button>
-
-  </div>
-
-
-  <div
-    class="saved-message"
-    id="savedMessage"
+  <section
+    id="pageWeight"
+    class="page active"
   >
-    ✓ Record saved 已保存
-  </div>
 
 
+    <div class="card">
 
-  <div class="card history-card">
+
+      <label>
+        Shape 类型
+      </label>
 
 
-    <div class="history-header">
+      <div class="shape-row">
 
-      <div class="history-title">
-        History 历史记录
+        <select id="shape">
+
+          <option value="plate">
+            Plate 板材
+          </option>
+
+          <option value="roundTube">
+            Hollow Round Tube 空心圆管
+          </option>
+
+        </select>
+
       </div>
+
+
+
+      <!-- PLATE -->
+
+      <div id="plateFields">
+
+
+        <label>
+          Length 长度
+        </label>
+
+
+        <div class="row">
+
+          <input
+            id="plateL"
+            type="number"
+            inputmode="decimal"
+            value="1"
+            step="any"
+          >
+
+
+          <select id="plateLu">
+
+            <option value="m">
+              Meter (m)
+            </option>
+
+            <option value="cm">
+              Centimeter (cm)
+            </option>
+
+            <option value="mm">
+              Millimeter (mm)
+            </option>
+
+            <option value="ft">
+              Feet (ft)
+            </option>
+
+            <option value="in">
+              Inch (in)
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <label>
+          Width 宽度
+        </label>
+
+
+        <div class="row">
+
+          <input
+            id="plateW"
+            type="number"
+            inputmode="decimal"
+            value="1"
+            step="any"
+          >
+
+
+          <select id="plateWu">
+
+            <option value="m">
+              Meter (m)
+            </option>
+
+            <option value="cm">
+              Centimeter (cm)
+            </option>
+
+            <option value="mm">
+              Millimeter (mm)
+            </option>
+
+            <option value="ft">
+              Feet (ft)
+            </option>
+
+            <option value="in">
+              Inch (in)
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <label>
+          Thickness 厚度
+        </label>
+
+
+        <div class="row">
+
+          <input
+            id="plateT"
+            type="number"
+            inputmode="decimal"
+            value="1"
+            step="any"
+          >
+
+
+          <select id="plateTu">
+
+            <option
+              value="mm"
+              selected
+            >
+              Millimeter (mm)
+            </option>
+
+            <option value="cm">
+              Centimeter (cm)
+            </option>
+
+            <option value="m">
+              Meter (m)
+            </option>
+
+            <option value="ft">
+              Feet (ft)
+            </option>
+
+            <option value="in">
+              Inch (in)
+            </option>
+
+          </select>
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- ROUND TUBE -->
+
+      <div
+        id="tubeFields"
+        class="hidden"
+      >
+
+
+        <label>
+          Outer Diameter 外径
+        </label>
+
+
+        <div class="row">
+
+          <input
+            id="tubeOD"
+            type="number"
+            inputmode="decimal"
+            value="1"
+            step="any"
+          >
+
+
+          <select id="tubeODu">
+
+            <option
+              value="mm"
+              selected
+            >
+              Millimeter (mm)
+            </option>
+
+            <option value="cm">
+              Centimeter (cm)
+            </option>
+
+            <option value="m">
+              Meter (m)
+            </option>
+
+            <option value="ft">
+              Feet (ft)
+            </option>
+
+            <option value="in">
+              Inch (in)
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <label>
+          Length 长度
+        </label>
+
+
+        <div class="row">
+
+          <input
+            id="tubeL"
+            type="number"
+            inputmode="decimal"
+            value="1"
+            step="any"
+          >
+
+
+          <select id="tubeLu">
+
+            <option
+              value="mm"
+              selected
+            >
+              Millimeter (mm)
+            </option>
+
+            <option value="cm">
+              Centimeter (cm)
+            </option>
+
+            <option value="m">
+              Meter (m)
+            </option>
+
+            <option value="ft">
+              Feet (ft)
+            </option>
+
+            <option value="in">
+              Inch (in)
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <label>
+          Thickness 厚度
+        </label>
+
+
+        <div class="row">
+
+          <input
+            id="tubeT"
+            type="number"
+            inputmode="decimal"
+            value="1"
+            step="any"
+          >
+
+
+          <select id="tubeTu">
+
+            <option
+              value="mm"
+              selected
+            >
+              Millimeter (mm)
+            </option>
+
+            <option value="cm">
+              Centimeter (cm)
+            </option>
+
+            <option value="m">
+              Meter (m)
+            </option>
+
+            <option value="ft">
+              Feet (ft)
+            </option>
+
+            <option value="in">
+              Inch (in)
+            </option>
+
+          </select>
+
+        </div>
+
+
+
+        <div class="extra-info">
+
+          Inner Diameter 内径:
+
+          <strong id="innerDiameter">
+            Invalid 无效
+          </strong>
+
+        </div>
+
+
+      </div>
+
+
+
+      <br>
+
+
+      <label>
+        Quantity 数量
+      </label>
+
+
+      <div class="quantity-row">
+
+        <input
+          id="Q"
+          type="number"
+          inputmode="numeric"
+          value="1"
+          min="1"
+          step="1"
+        >
+
+
+        <div class="qty-label">
+          Pieces (PCS) · 件
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="result">
+
+
+      <div class="result-item">
+
+        <div class="result-title">
+          Single Weight 单件重量
+        </div>
+
+        <div
+          class="num"
+          id="singleKg"
+        >
+          7.850
+        </div>
+
+        <div class="unit">
+          KG
+        </div>
+
+      </div>
+
+
+
+      <div class="result-divider"></div>
+
+
+
+      <div class="result-item total">
+
+        <div class="result-title">
+          Total Weight 总重量
+        </div>
+
+        <div
+          class="num"
+          id="totalKg"
+        >
+          7.850
+        </div>
+
+        <div class="unit">
+          KG
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+
+    <div class="action-area">
 
       <button
-        class="clear-history"
-        id="clearHistoryBtn"
+        class="save-btn"
+        id="saveBtn"
         type="button"
       >
-        Clear All 全部清除
+        Save Record 保存记录
+      </button>
+
+
+      <button
+        class="reset-btn"
+        id="resetBtn"
+        type="button"
+      >
+        Reset 清除
       </button>
 
     </div>
 
 
-    <div id="historyList"></div>
 
+    <div
+      class="saved-message"
+      id="savedMessage"
+    >
+      ✓ Record saved 已保存
+    </div>
+
+
+
+    <div class="note">
+
+      Steel density: 7,850 kg/m³
+
+      <br>
+
+      钢材密度：7,850 kg/m³
+
+      <br>
+
+      Theoretical weight calculation.
+
+      <br>
+
+      理论重量计算。
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- CALCULATOR PAGE -->
+
+  <section
+    id="pageCalculator"
+    class="page"
+  >
+
+
+    <div class="page-title">
+      Calculator
+    </div>
+
+    <div class="page-subtitle">
+      Simple Calculator · 简易计算机
+    </div>
+
+
+    <div class="calculator">
+
+      <div class="calc-body">
+
+
+        <div
+          class="calc-memory"
+          id="calcMemoryStatus"
+        ></div>
+
+
+        <div class="calc-display">
+
+          <div
+            class="calc-display-value"
+            id="calcDisplay"
+          >
+            0
+          </div>
+
+        </div>
+
+
+
+        <div class="calc-memory-grid">
+
+          <button
+            class="calc-btn memory function"
+            data-action="mc"
+          >
+            MC
+          </button>
+
+          <button
+            class="calc-btn memory function"
+            data-action="mr"
+          >
+            MR
+          </button>
+
+          <button
+            class="calc-btn memory function"
+            data-action="mplus"
+          >
+            M+
+          </button>
+
+        </div>
+
+
+
+        <div class="calc-grid">
+
+
+          <button
+            class="calc-btn function"
+            data-action="clear"
+          >
+            C
+          </button>
+
+
+          <button
+            class="calc-btn function"
+            data-action="percent"
+          >
+            %
+          </button>
+
+
+          <button
+            class="calc-btn function"
+            data-action="backspace"
+          >
+            ⌫
+          </button>
+
+
+          <button
+            class="calc-btn operator"
+            data-operator="/"
+          >
+            ÷
+          </button>
+
+
+
+          <button
+            class="calc-btn"
+            data-digit="7"
+          >
+            7
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-digit="8"
+          >
+            8
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-digit="9"
+          >
+            9
+          </button>
+
+
+          <button
+            class="calc-btn operator"
+            data-operator="*"
+          >
+            ×
+          </button>
+
+
+
+          <button
+            class="calc-btn"
+            data-digit="4"
+          >
+            4
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-digit="5"
+          >
+            5
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-digit="6"
+          >
+            6
+          </button>
+
+
+          <button
+            class="calc-btn operator"
+            data-operator="-"
+          >
+            −
+          </button>
+
+
+
+          <button
+            class="calc-btn"
+            data-digit="1"
+          >
+            1
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-digit="2"
+          >
+            2
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-digit="3"
+          >
+            3
+          </button>
+
+
+          <button
+            class="calc-btn operator"
+            data-operator="+"
+          >
+            +
+          </button>
+
+
+
+          <button
+            class="calc-btn"
+            data-digit="0"
+          >
+            0
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-action="doublezero"
+          >
+            00
+          </button>
+
+
+          <button
+            class="calc-btn"
+            data-action="decimal"
+          >
+            .
+          </button>
+
+
+          <button
+            class="calc-btn equals"
+            data-action="equals"
+          >
+            =
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- HISTORY PAGE -->
+
+  <section
+    id="pageHistory"
+    class="page"
+  >
+
+
+    <div class="page-title">
+      History
+    </div>
+
+    <div class="page-subtitle">
+      Saved Calculations · 历史记录
+    </div>
+
+
+    <div class="card">
+
+
+      <div class="history-header">
+
+        <div class="history-title">
+          Saved Records 已保存记录
+        </div>
+
+
+        <button
+          class="clear-history"
+          id="clearHistoryBtn"
+          type="button"
+        >
+          Clear All 全部清除
+        </button>
+
+      </div>
+
+
+      <div id="historyList"></div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- SETTINGS PAGE -->
+
+  <section
+    id="pageSettings"
+    class="page"
+  >
+
+
+    <div class="page-title">
+      Settings
+    </div>
+
+    <div class="page-subtitle">
+      App Preferences · 设置
+    </div>
+
+
+    <div class="card">
+
+
+      <div class="setting-block">
+
+        <div class="setting-name">
+          Default Unit 默认单位
+        </div>
+
+        <div class="setting-description">
+          Set the preferred measurement unit for new calculations.
+          <br>
+          设置新计算时使用的默认尺寸单位。
+        </div>
+
+        <div class="coming-soon">
+          Coming Soon · 稍后加入
+        </div>
+
+      </div>
+
+
+
+      <div class="setting-block">
+
+        <div class="setting-name">
+          Default Material 默认材质
+        </div>
+
+        <div class="setting-description">
+          Steel is currently fixed at 7,850 kg/m³.
+          <br>
+          目前固定使用钢材密度 7,850 kg/m³。
+        </div>
+
+        <div class="coming-soon">
+          Coming Soon · 稍后加入
+        </div>
+
+      </div>
+
+
+
+      <div class="setting-block">
+
+        <div class="setting-name">
+          Language 语言
+        </div>
+
+        <div class="setting-description">
+          English and Chinese are currently displayed together.
+          <br>
+          目前英文与中文同时显示。
+        </div>
+
+        <div class="coming-soon">
+          Coming Soon · 稍后加入
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+
+  <!-- ABOUT PAGE -->
+
+  <section
+    id="pageAbout"
+    class="page"
+  >
+
+
+    <div class="page-title">
+      About
+    </div>
+
+    <div class="page-subtitle">
+      Application Information · 关于
+    </div>
+
+
+    <div class="card">
+
+
+      <div class="about-logo">
+
+        <div class="about-app-name">
+          Metal Weight
+        </div>
+
+        <div class="about-version">
+          Version 1.0.8
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Company 公司
+        </div>
+
+        <div class="about-value">
+          Technoair Pollution Control Sdn. Bhd.
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Company Registration No. 公司注册号
+        </div>
+
+        <div class="about-value">
+          0913698X
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Department 部门
+        </div>
+
+        <div class="about-value">
+          R&amp;D Department
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Developer 开发者
+        </div>
+
+        <div class="about-value">
+          Anthony Chua
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Company Email 公司电邮
+        </div>
+
+        <div class="about-value">
+          technoair2026@outlook.com
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Steel Density 钢材密度
+        </div>
+
+        <div class="about-value">
+          7,850 kg/m³
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="about-label">
+          Description 说明
+        </div>
+
+        <div class="about-description">
+
+          This application calculates theoretical metal weight
+          based on entered dimensions and material density.
+
+          <br><br>
+
+          Actual weight may vary due to material tolerance,
+          thickness variation, welding, fabrication and other
+          manufacturing factors.
+
+          <br><br>
+
+          本应用根据输入尺寸及材料密度计算金属理论重量。
+
+          <br><br>
+
+          实际重量可能因材料公差、板厚误差、焊接、
+          加工及其他制造因素而有所不同。
+
+        </div>
+
+      </div>
+
+
+
+      <div class="about-section">
+
+        <div class="internal-note">
+
+          For internal reference only.
+          <br>
+          仅供内部参考。
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+  </section>
+
+
+</div>
+
+
+
+<!-- DRAWER OVERLAY -->
+
+<div
+  id="drawerOverlay"
+  class="drawer-overlay"
+></div>
+
+
+
+<!-- DRAWER -->
+
+<div
+  id="drawer"
+  class="drawer"
+>
+
+
+  <div class="drawer-header">
+
+    <div class="drawer-title">
+      Menu 菜单
+    </div>
+
+
+    <button
+      id="drawerClose"
+      class="drawer-close"
+      type="button"
+    >
+      ×
+    </button>
 
   </div>
 
 
 
-  <div class="note">
+  <button
+    class="drawer-item active"
+    data-page="weight"
+    type="button"
+  >
+    Metal Weight 重量计算
+  </button>
 
-    Steel density: 7,850 kg/m³
 
-    <br>
+  <button
+    class="drawer-item"
+    data-page="calculator"
+    type="button"
+  >
+    Calculator 计算机
+  </button>
 
-    钢材密度：7,850 kg/m³
 
-    <br>
+  <button
+    class="drawer-item"
+    data-page="history"
+    type="button"
+  >
+    History 历史记录
+  </button>
 
-    Calculated as solid steel material volume.
 
-    <br>
+  <button
+    class="drawer-item"
+    data-page="settings"
+    type="button"
+  >
+    Settings 设置
+  </button>
 
-    按实际钢材体积计算。
 
-  </div>
+  <button
+    class="drawer-item"
+    data-page="about"
+    type="button"
+  >
+    About 关于
+  </button>
 
 
 </div>
@@ -953,6 +1836,11 @@ button{
 
 
 <script>
+
+
+/* =========================================================
+   METAL WEIGHT
+========================================================= */
 
 
 const density = 7850;
@@ -988,7 +1876,6 @@ const unitLabel = {
 };
 
 
-
 const shape =
   document.getElementById('shape');
 
@@ -998,7 +1885,6 @@ const plateFields =
 
 const tubeFields =
   document.getElementById('tubeFields');
-
 
 
 const plateL =
@@ -1019,7 +1905,6 @@ const plateWu =
 
 const plateTu =
   document.getElementById('plateTu');
-
 
 
 const tubeOD =
@@ -1044,7 +1929,6 @@ const tubeTu =
 
 const innerDiameterBox =
   document.getElementById('innerDiameter');
-
 
 
 const quantityInput =
@@ -1238,6 +2122,7 @@ function calculateTube(){
     innerDiameterBox.textContent =
       'Invalid 无效';
 
+
     return {
 
       valid:false,
@@ -1245,12 +2130,15 @@ function calculateTube(){
       singleKg:0,
 
       data:{
+
         OD,
         L,
         T,
+
         ODu:tubeODu.value,
         Lu:tubeLu.value,
         Tu:tubeTu.value
+
       }
 
     };
@@ -1440,13 +2328,13 @@ function resetForm(){
   else{
 
     tubeOD.value =
-      800;
+      1;
 
     tubeL.value =
-      1200;
+      1;
 
     tubeT.value =
-      5;
+      1;
 
 
     tubeODu.value =
@@ -1465,6 +2353,11 @@ function resetForm(){
 
 }
 
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
 
 
 function getHistory(){
@@ -1611,6 +2504,26 @@ function loadRecord(id){
   }
 
 
+  if(!item.shape){
+
+    item.shape =
+      'plate';
+
+    item.data = {
+
+      L:item.L,
+      W:item.W,
+      T:item.T,
+
+      Lu:item.Lu,
+      Wu:item.Wu,
+      Tu:item.Tu
+
+    };
+
+  }
+
+
   shape.value =
     item.shape;
 
@@ -1619,7 +2532,7 @@ function loadRecord(id){
 
 
   quantityInput.value =
-    item.Q;
+    item.Q || 1;
 
 
   if(
@@ -1677,13 +2590,9 @@ function loadRecord(id){
   calculateWeight();
 
 
-  window.scrollTo({
-
-    top:0,
-
-    behavior:'smooth'
-
-  });
+  showPage(
+    'weight'
+  );
 
 }
 
@@ -1768,13 +2677,49 @@ function renderHistory(){
       'No saved records · 暂无历史记录' +
       '</div>';
 
+
     return;
 
   }
 
 
   history.forEach(
-    function(item){
+    function(originalItem){
+
+
+      const item =
+        Object.assign(
+          {},
+          originalItem
+        );
+
+
+      if(!item.shape){
+
+        item.shape =
+          'plate';
+
+
+        item.data = {
+
+          L:item.L,
+          W:item.W,
+          T:item.T,
+
+          Lu:item.Lu,
+          Wu:item.Wu,
+          Tu:item.Tu
+
+        };
+
+      }
+
+
+      if(!item.data){
+
+        return;
+
+      }
 
 
       const div =
@@ -1865,8 +2810,9 @@ function renderHistory(){
 
             'Inner Diameter 内径: ' +
 
-            item.data.innerDiameterMM
-              .toFixed(3) +
+            Number(
+              item.data.innerDiameterMM
+            ).toFixed(3) +
 
             ' mm<br>';
 
@@ -1880,7 +2826,7 @@ function renderHistory(){
 
         <div
           class="history-main"
-          onclick="loadRecord(${item.id})"
+          data-load-id="${item.id}"
         >
 
           <div class="history-shape">
@@ -1896,7 +2842,7 @@ function renderHistory(){
             ${extra}
 
             Quantity 数量:
-            ${item.Q} PCS
+            ${item.Q || 1} PCS
 
           </div>
 
@@ -1922,16 +2868,13 @@ function renderHistory(){
         <div class="history-bottom">
 
           <div class="history-time">
-            ${item.time}
+            ${item.time || ''}
           </div>
 
           <button
             class="delete-btn"
             type="button"
-            onclick="
-              event.stopPropagation();
-              deleteRecord(${item.id})
-            "
+            data-delete-id="${item.id}"
           >
             Delete 删除
           </button>
@@ -1946,18 +2889,1054 @@ function renderHistory(){
       );
 
     }
+  );
 
+
+
+  document
+    .querySelectorAll(
+      '[data-load-id]'
+    )
+    .forEach(
+      function(element){
+
+        element.addEventListener(
+          'click',
+          function(){
+
+            loadRecord(
+              Number(
+                element.dataset.loadId
+              )
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+
+  document
+    .querySelectorAll(
+      '[data-delete-id]'
+    )
+    .forEach(
+      function(element){
+
+        element.addEventListener(
+          'click',
+          function(event){
+
+            event.stopPropagation();
+
+
+            deleteRecord(
+              Number(
+                element.dataset.deleteId
+              )
+            );
+
+          }
+        );
+
+      }
+    );
+
+}
+
+
+
+/* =========================================================
+   SIMPLE CALCULATOR
+========================================================= */
+
+
+const calcDisplay =
+  document.getElementById(
+    'calcDisplay'
+  );
+
+
+const calcMemoryStatus =
+  document.getElementById(
+    'calcMemoryStatus'
+  );
+
+
+let calcCurrent =
+  '0';
+
+
+let calcAccumulator =
+  null;
+
+
+let calcOperator =
+  null;
+
+
+let calcWaiting =
+  false;
+
+
+let calcMemory =
+  Number(
+    localStorage.getItem(
+      'calculatorMemory'
+    )
+  ) || 0;
+
+
+
+function calcUpdateDisplay(){
+
+  calcDisplay.textContent =
+    calcCurrent;
+
+
+  calcMemoryStatus.textContent =
+
+    calcMemory !== 0
+      ? 'M = ' + formatCalcNumber(calcMemory)
+      : '';
+
+}
+
+
+
+function formatCalcNumber(value){
+
+  if(!isFinite(value)){
+
+    return 'Error';
+
+  }
+
+
+  const rounded =
+    Math.round(
+      value * 1000000000
+    ) /
+    1000000000;
+
+
+  return String(
+    rounded
   );
 
 }
 
 
 
+function calcInputDigit(digit){
+
+  if(
+    calcCurrent === 'Error' ||
+    calcWaiting
+  ){
+
+    calcCurrent =
+      digit;
+
+    calcWaiting =
+      false;
+
+  }
+
+  else{
+
+    if(calcCurrent === '0'){
+
+      calcCurrent =
+        digit;
+
+    }
+
+    else if(
+      calcCurrent.length < 16
+    ){
+
+      calcCurrent +=
+        digit;
+
+    }
+
+  }
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcInputDoubleZero(){
+
+  if(
+    calcCurrent === 'Error' ||
+    calcWaiting
+  ){
+
+    calcCurrent =
+      '0';
+
+    calcWaiting =
+      false;
+
+  }
+
+  else if(
+    calcCurrent !== '0' &&
+    calcCurrent.length < 15
+  ){
+
+    calcCurrent +=
+      '00';
+
+  }
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcDecimal(){
+
+  if(
+    calcCurrent === 'Error'
+  ){
+
+    calcCurrent =
+      '0.';
+
+    calcWaiting =
+      false;
+
+  }
+
+  else if(calcWaiting){
+
+    calcCurrent =
+      '0.';
+
+    calcWaiting =
+      false;
+
+  }
+
+  else if(
+    !calcCurrent.includes('.')
+  ){
+
+    calcCurrent +=
+      '.';
+
+  }
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcPerform(
+  first,
+  second,
+  operator
+){
+
+  if(operator === '+'){
+
+    return first + second;
+
+  }
+
+
+  if(operator === '-'){
+
+    return first - second;
+
+  }
+
+
+  if(operator === '*'){
+
+    return first * second;
+
+  }
+
+
+  if(operator === '/'){
+
+    if(second === 0){
+
+      return NaN;
+
+    }
+
+
+    return first / second;
+
+  }
+
+
+  return second;
+
+}
+
+
+
+function calcChooseOperator(
+  nextOperator
+){
+
+  const inputValue =
+    parseFloat(calcCurrent);
+
+
+  if(
+    !isFinite(inputValue)
+  ){
+
+    calcClear();
+
+    return;
+
+  }
+
+
+  if(
+    calcOperator &&
+    calcWaiting
+  ){
+
+    calcOperator =
+      nextOperator;
+
+    return;
+
+  }
+
+
+  if(
+    calcAccumulator === null
+  ){
+
+    calcAccumulator =
+      inputValue;
+
+  }
+
+  else if(calcOperator){
+
+    const result =
+      calcPerform(
+        calcAccumulator,
+        inputValue,
+        calcOperator
+      );
+
+
+    if(!isFinite(result)){
+
+      calcCurrent =
+        'Error';
+
+      calcAccumulator =
+        null;
+
+      calcOperator =
+        null;
+
+      calcWaiting =
+        true;
+
+      calcUpdateDisplay();
+
+      return;
+
+    }
+
+
+    calcAccumulator =
+      result;
+
+
+    calcCurrent =
+      formatCalcNumber(
+        result
+      );
+
+  }
+
+
+  calcOperator =
+    nextOperator;
+
+
+  calcWaiting =
+    true;
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcEquals(){
+
+  if(
+    calcAccumulator === null ||
+    !calcOperator
+  ){
+
+    return;
+
+  }
+
+
+  const second =
+    parseFloat(
+      calcCurrent
+    );
+
+
+  const result =
+    calcPerform(
+      calcAccumulator,
+      second,
+      calcOperator
+    );
+
+
+  if(!isFinite(result)){
+
+    calcCurrent =
+      'Error';
+
+  }
+
+  else{
+
+    calcCurrent =
+      formatCalcNumber(
+        result
+      );
+
+  }
+
+
+  calcAccumulator =
+    null;
+
+
+  calcOperator =
+    null;
+
+
+  calcWaiting =
+    true;
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcPercent(){
+
+  const value =
+    parseFloat(
+      calcCurrent
+    );
+
+
+  if(!isFinite(value)){
+
+    return;
+
+  }
+
+
+  calcCurrent =
+    formatCalcNumber(
+      value / 100
+    );
+
+
+  calcWaiting =
+    true;
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcBackspace(){
+
+  if(
+    calcWaiting ||
+    calcCurrent === 'Error'
+  ){
+
+    return;
+
+  }
+
+
+  if(
+    calcCurrent.length <= 1
+  ){
+
+    calcCurrent =
+      '0';
+
+  }
+
+  else{
+
+    calcCurrent =
+      calcCurrent.slice(
+        0,
+        -1
+      );
+
+
+    if(
+      calcCurrent === '-' ||
+      calcCurrent === ''
+    ){
+
+      calcCurrent =
+        '0';
+
+    }
+
+  }
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcClear(){
+
+  calcCurrent =
+    '0';
+
+
+  calcAccumulator =
+    null;
+
+
+  calcOperator =
+    null;
+
+
+  calcWaiting =
+    false;
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcMemoryClear(){
+
+  calcMemory =
+    0;
+
+
+  localStorage.removeItem(
+    'calculatorMemory'
+  );
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcMemoryRecall(){
+
+  calcCurrent =
+    formatCalcNumber(
+      calcMemory
+    );
+
+
+  calcWaiting =
+    true;
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+function calcMemoryAdd(){
+
+  const value =
+    parseFloat(
+      calcCurrent
+    );
+
+
+  if(!isFinite(value)){
+
+    return;
+
+  }
+
+
+  calcMemory +=
+    value;
+
+
+  localStorage.setItem(
+    'calculatorMemory',
+    String(calcMemory)
+  );
+
+
+  calcUpdateDisplay();
+
+}
+
+
+
+document
+  .querySelectorAll(
+    '[data-digit]'
+  )
+  .forEach(
+    function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          calcInputDigit(
+            button.dataset.digit
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+
+document
+  .querySelectorAll(
+    '[data-operator]'
+  )
+  .forEach(
+    function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          calcChooseOperator(
+            button.dataset.operator
+          );
+
+        }
+      );
+
+    }
+  );
+
+
+
+document
+  .querySelectorAll(
+    '[data-action]'
+  )
+  .forEach(
+    function(button){
+
+      button.addEventListener(
+        'click',
+        function(){
+
+          const action =
+            button.dataset.action;
+
+
+          if(
+            action === 'clear'
+          ){
+
+            calcClear();
+
+          }
+
+
+          else if(
+            action === 'decimal'
+          ){
+
+            calcDecimal();
+
+          }
+
+
+          else if(
+            action === 'doublezero'
+          ){
+
+            calcInputDoubleZero();
+
+          }
+
+
+          else if(
+            action === 'backspace'
+          ){
+
+            calcBackspace();
+
+          }
+
+
+          else if(
+            action === 'percent'
+          ){
+
+            calcPercent();
+
+          }
+
+
+          else if(
+            action === 'equals'
+          ){
+
+            calcEquals();
+
+          }
+
+
+          else if(
+            action === 'mc'
+          ){
+
+            calcMemoryClear();
+
+          }
+
+
+          else if(
+            action === 'mr'
+          ){
+
+            calcMemoryRecall();
+
+          }
+
+
+          else if(
+            action === 'mplus'
+          ){
+
+            calcMemoryAdd();
+
+          }
+
+        }
+      );
+
+    }
+  );
+
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+
+const pageMap = {
+
+  weight:
+    document.getElementById(
+      'pageWeight'
+    ),
+
+  calculator:
+    document.getElementById(
+      'pageCalculator'
+    ),
+
+  history:
+    document.getElementById(
+      'pageHistory'
+    ),
+
+  settings:
+    document.getElementById(
+      'pageSettings'
+    ),
+
+  about:
+    document.getElementById(
+      'pageAbout'
+    )
+
+};
+
+
+
+const pageTitles = {
+
+  weight:[
+    'Metal Weight',
+    'Metal Weight Calculator · 金属重量计算器'
+  ],
+
+  calculator:[
+    'Calculator',
+    'Simple Calculator · 简易计算机'
+  ],
+
+  history:[
+    'History',
+    'Saved Calculations · 历史记录'
+  ],
+
+  settings:[
+    'Settings',
+    'App Preferences · 设置'
+  ],
+
+  about:[
+    'About',
+    'Application Information · 关于'
+  ]
+
+};
+
+
+
+const mainTitle =
+  document.getElementById(
+    'mainTitle'
+  );
+
+
+const mainSubtitle =
+  document.getElementById(
+    'mainSubtitle'
+  );
+
+
+
+function showPage(pageName){
+
+  Object.values(
+    pageMap
+  )
+  .forEach(
+    function(page){
+
+      page.classList.remove(
+        'active'
+      );
+
+    }
+  );
+
+
+  const selectedPage =
+    pageMap[pageName];
+
+
+  if(!selectedPage){
+
+    return;
+
+  }
+
+
+  selectedPage.classList.add(
+    'active'
+  );
+
+
+  mainTitle.textContent =
+    pageTitles[pageName][0];
+
+
+  mainSubtitle.textContent =
+    pageTitles[pageName][1];
+
+
+  document
+    .querySelectorAll(
+      '.drawer-item'
+    )
+    .forEach(
+      function(item){
+
+        item.classList.toggle(
+          'active',
+          item.dataset.page === pageName
+        );
+
+      }
+    );
+
+
+  if(
+    pageName === 'history'
+  ){
+
+    renderHistory();
+
+  }
+
+
+  window.scrollTo({
+    top:0,
+    behavior:'smooth'
+  });
+
+}
+
+
+
+/* =========================================================
+   DRAWER
+========================================================= */
+
+
+const menuBtn =
+  document.getElementById(
+    'menuBtn'
+  );
+
+
+const drawer =
+  document.getElementById(
+    'drawer'
+  );
+
+
+const drawerOverlay =
+  document.getElementById(
+    'drawerOverlay'
+  );
+
+
+const drawerClose =
+  document.getElementById(
+    'drawerClose'
+  );
+
+
+
+function openDrawer(){
+
+  drawer.classList.add(
+    'open'
+  );
+
+
+  drawerOverlay.classList.add(
+    'open'
+  );
+
+}
+
+
+
+function closeDrawer(){
+
+  drawer.classList.remove(
+    'open'
+  );
+
+
+  drawerOverlay.classList.remove(
+    'open'
+  );
+
+}
+
+
+
+menuBtn.addEventListener(
+  'click',
+  openDrawer
+);
+
+
+drawerClose.addEventListener(
+  'click',
+  closeDrawer
+);
+
+
+drawerOverlay.addEventListener(
+  'click',
+  closeDrawer
+);
+
+
+
+document
+  .querySelectorAll(
+    '.drawer-item'
+  )
+  .forEach(
+    function(item){
+
+      item.addEventListener(
+        'click',
+        function(){
+
+          showPage(
+            item.dataset.page
+          );
+
+
+          closeDrawer();
+
+        }
+      );
+
+    }
+  );
+
+
+
+/* =========================================================
+   WEIGHT EVENTS
+========================================================= */
+
+
 shape.addEventListener(
   'change',
   changeShape
 );
-
 
 
 saveBtn.addEventListener(
@@ -1994,6 +3973,7 @@ const allInputs = [
 ];
 
 
+
 allInputs.forEach(
   function(element){
 
@@ -2018,6 +3998,7 @@ const allSelects = [
   tubeTu
 
 ];
+
 
 
 allSelects.forEach(
@@ -2067,6 +4048,11 @@ allInputs.forEach(
 
 
 
+/* =========================================================
+   INSTALL / SERVICE WORKER
+========================================================= */
+
+
 let deferredPrompt =
   null;
 
@@ -2083,34 +4069,34 @@ const installBtn =
   );
 
 
+
 window.addEventListener(
-
   'beforeinstallprompt',
-
   function(e){
 
     e.preventDefault();
 
+
     deferredPrompt =
       e;
+
 
     installBox.style.display =
       'block';
 
   }
-
 );
 
 
+
 installBtn.addEventListener(
-
   'click',
-
   async function(){
 
     if(deferredPrompt){
 
       deferredPrompt.prompt();
+
 
       deferredPrompt =
         null;
@@ -2118,7 +4104,6 @@ installBtn.addEventListener(
     }
 
   }
-
 );
 
 
@@ -2135,185 +4120,22 @@ if(
 
 
 
+/* =========================================================
+   START APP
+========================================================= */
+
+
 changeShape();
 
 renderHistory();
-</script>
-<div
-  id="drawerOverlay"
-  class="drawer-overlay"
-></div>
 
+calcUpdateDisplay();
 
-<div
-  id="drawer"
-  class="drawer"
->
+showPage('weight');
 
-  <div class="drawer-header">
-
-    <div class="drawer-title">
-      Menu 菜单
-    </div>
-
-    <button
-      id="drawerClose"
-      class="drawer-close"
-      type="button"
-    >
-      ×
-    </button>
-
-  </div>
-
-
-  <button
-    class="drawer-item"
-    data-page="calculator"
-    type="button"
-  >
-    Calculator 计算器
-  </button>
-
-
-  <button
-    class="drawer-item"
-    data-page="history"
-    type="button"
-  >
-    History 历史记录
-  </button>
-
-
-  <button
-    class="drawer-item"
-    data-page="settings"
-    type="button"
-  >
-    Settings 设置
-  </button>
-
-
-  <button
-    class="drawer-item"
-    data-page="about"
-    type="button"
-  >
-    About 关于
-  </button>
-
-</div>
-</script>
-  <script>
-
-const menuBtn =
-  document.getElementById('menuBtn');
-
-const drawer =
-  document.getElementById('drawer');
-
-const drawerOverlay =
-  document.getElementById('drawerOverlay');
-
-const drawerClose =
-  document.getElementById('drawerClose');
-
-
-function openDrawer(){
-
-  drawer.classList.add('open');
-
-  drawerOverlay.classList.add('open');
-
-}
-
-
-function closeDrawer(){
-
-  drawer.classList.remove('open');
-
-  drawerOverlay.classList.remove('open');
-
-}
-
-
-menuBtn.addEventListener(
-  'click',
-  openDrawer
-);
-
-
-drawerClose.addEventListener(
-  'click',
-  closeDrawer
-);
-
-
-drawerOverlay.addEventListener(
-  'click',
-  closeDrawer
-);
-
-
-document
-  .querySelectorAll('.drawer-item')
-  .forEach(function(item){
-
-    item.addEventListener(
-      'click',
-      function(){
-
-        const page =
-          item.dataset.page;
-
-
-        if(page === 'calculator'){
-
-          window.scrollTo({
-            top:0,
-            behavior:'smooth'
-          });
-
-        }
-
-
-        else if(page === 'history'){
-
-          document
-            .querySelector('.history-card')
-            ?.scrollIntoView({
-              behavior:'smooth'
-            });
-
-        }
-
-
-        else if(page === 'settings'){
-
-          alert(
-            'Settings coming soon.\n设置功能稍后加入。'
-          );
-
-        }
-
-
-        else if(page === 'about'){
-
-          alert(
-            'Metal Weight Calculator\nSteel density: 7,850 kg/m³\n\n金属重量计算器'
-          );
-
-        }
-
-
-        closeDrawer();
-
-      }
-    );
-
-  });
 
 </script>
+
 </body>
 
 </html>

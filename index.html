@@ -366,6 +366,84 @@ button{
 
 }
 
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.menu-btn{
+  width:48px;
+  min-width:48px;
+  height:48px;
+  padding:0;
+  font-size:25px;
+  line-height:1;
+  background:white;
+  color:#111827;
+  border:1px solid #d1d5db;
+}
+
+.drawer-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.35);
+  opacity:0;
+  visibility:hidden;
+  transition:0.25s;
+  z-index:998;
+}
+
+.drawer-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+
+.drawer{
+  position:fixed;
+  top:0;
+  right:-290px;
+  width:280px;
+  max-width:85vw;
+  height:100vh;
+  background:white;
+  box-shadow:-6px 0 20px #00000025;
+  z-index:999;
+  transition:right 0.25s ease;
+  padding:18px;
+}
+
+.drawer.open{
+  right:0;
+}
+
+.drawer-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+
+.drawer-title{
+  font-size:20px;
+  font-weight:750;
+}
+
+.drawer-close{
+  width:42px;
+  height:42px;
+  padding:0;
+  font-size:28px;
+  background:white;
+}
+
+.drawer-item{
+  text-align:left;
+  margin-bottom:10px;
+  background:#f9fafb;
+  color:#111827;
+}
 </style>
 
 </head>
@@ -376,17 +454,25 @@ button{
 <div class="wrap">
 
 
-  <div class="top">
+<div class="top topbar">
 
-    <h1>
-      Metal Weight
-    </h1>
+  <div>
+    <h1>Metal Weight</h1>
 
     <div class="sub">
       Metal Weight Calculator · 金属重量计算器
     </div>
-
   </div>
+
+  <button
+    id="menuBtn"
+    class="menu-btn"
+    type="button"
+  >
+    ☰
+  </button>
+
+</div>
 
 
   <div
@@ -2052,10 +2138,182 @@ if(
 changeShape();
 
 renderHistory();
+</script>
+<div
+  id="drawerOverlay"
+  class="drawer-overlay"
+></div>
 
+
+<div
+  id="drawer"
+  class="drawer"
+>
+
+  <div class="drawer-header">
+
+    <div class="drawer-title">
+      Menu 菜单
+    </div>
+
+    <button
+      id="drawerClose"
+      class="drawer-close"
+      type="button"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+  <button
+    class="drawer-item"
+    data-page="calculator"
+    type="button"
+  >
+    Calculator 计算器
+  </button>
+
+
+  <button
+    class="drawer-item"
+    data-page="history"
+    type="button"
+  >
+    History 历史记录
+  </button>
+
+
+  <button
+    class="drawer-item"
+    data-page="settings"
+    type="button"
+  >
+    Settings 设置
+  </button>
+
+
+  <button
+    class="drawer-item"
+    data-page="about"
+    type="button"
+  >
+    About 关于
+  </button>
+
+</div>
+</script>
+  <script>
+
+const menuBtn =
+  document.getElementById('menuBtn');
+
+const drawer =
+  document.getElementById('drawer');
+
+const drawerOverlay =
+  document.getElementById('drawerOverlay');
+
+const drawerClose =
+  document.getElementById('drawerClose');
+
+
+function openDrawer(){
+
+  drawer.classList.add('open');
+
+  drawerOverlay.classList.add('open');
+
+}
+
+
+function closeDrawer(){
+
+  drawer.classList.remove('open');
+
+  drawerOverlay.classList.remove('open');
+
+}
+
+
+menuBtn.addEventListener(
+  'click',
+  openDrawer
+);
+
+
+drawerClose.addEventListener(
+  'click',
+  closeDrawer
+);
+
+
+drawerOverlay.addEventListener(
+  'click',
+  closeDrawer
+);
+
+
+document
+  .querySelectorAll('.drawer-item')
+  .forEach(function(item){
+
+    item.addEventListener(
+      'click',
+      function(){
+
+        const page =
+          item.dataset.page;
+
+
+        if(page === 'calculator'){
+
+          window.scrollTo({
+            top:0,
+            behavior:'smooth'
+          });
+
+        }
+
+
+        else if(page === 'history'){
+
+          document
+            .querySelector('.history-card')
+            ?.scrollIntoView({
+              behavior:'smooth'
+            });
+
+        }
+
+
+        else if(page === 'settings'){
+
+          alert(
+            'Settings coming soon.\n设置功能稍后加入。'
+          );
+
+        }
+
+
+        else if(page === 'about'){
+
+          alert(
+            'Metal Weight Calculator\nSteel density: 7,850 kg/m³\n\n金属重量计算器'
+          );
+
+        }
+
+
+        closeDrawer();
+
+      }
+    );
+
+  });
 
 </script>
-
 </body>
 
 </html>

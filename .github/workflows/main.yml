@@ -11,18 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
+
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
+
       - name: Install Capacitor
         run: |
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
+
 
       - name: Prepare web files
         run: |
@@ -31,13 +35,109 @@ jobs:
           cp manifest.json www/
           cp sw.js www/
 
+
       - name: Create Android project
         run: |
           npx cap init "Metal Weight" "com.anthony.metalweight" --web-dir www
           npx cap add android
 
+
       - name: Sync files
         run: npx cap sync android
+
+
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+
+      - name: Create Technoair App Icons
+        run: |
+          # Standard launcher icons
+
+          convert app_icon.png \
+            -resize 48x48 \
+            android/app/src/main/res/mipmap-mdpi/ic_launcher.png
+
+          convert app_icon.png \
+            -resize 72x72 \
+            android/app/src/main/res/mipmap-hdpi/ic_launcher.png
+
+          convert app_icon.png \
+            -resize 96x96 \
+            android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
+
+          convert app_icon.png \
+            -resize 144x144 \
+            android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+
+          convert app_icon.png \
+            -resize 192x192 \
+            android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
+
+
+          # Round launcher icons
+
+          convert app_icon.png \
+            -resize 48x48 \
+            android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png
+
+          convert app_icon.png \
+            -resize 72x72 \
+            android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png
+
+          convert app_icon.png \
+            -resize 96x96 \
+            android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png
+
+          convert app_icon.png \
+            -resize 144x144 \
+            android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png
+
+          convert app_icon.png \
+            -resize 192x192 \
+            android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png
+
+
+          # Adaptive icon foreground
+          # Add some padding so Android does not crop the logo too much
+
+          convert app_icon.png \
+            -resize 72x72 \
+            -gravity center \
+            -background none \
+            -extent 108x108 \
+            android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png
+
+          convert app_icon.png \
+            -resize 108x108 \
+            -gravity center \
+            -background none \
+            -extent 162x162 \
+            android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png
+
+          convert app_icon.png \
+            -resize 144x144 \
+            -gravity center \
+            -background none \
+            -extent 216x216 \
+            android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png
+
+          convert app_icon.png \
+            -resize 216x216 \
+            -gravity center \
+            -background none \
+            -extent 324x324 \
+            android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png
+
+          convert app_icon.png \
+            -resize 288x288 \
+            -gravity center \
+            -background none \
+            -extent 432x432 \
+            android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png
+
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -45,11 +145,13 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+
       - name: Build APK
         working-directory: android
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
+
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

@@ -1,14 +1,30 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<link rel="manifest" href="manifest.json">
 
-<title>Metal Plate Weight</title>
+<head>
+
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#111827"
+>
+
+<link
+  rel="manifest"
+  href="manifest.json"
+>
+
+<title>Metal Weight</title>
+
 
 <style>
+
 *{
   box-sizing:border-box;
 }
@@ -57,6 +73,10 @@ label{
   margin:0 0 7px;
 }
 
+.shape-row{
+  margin-bottom:18px;
+}
+
 .row,
 .quantity-row{
   display:grid;
@@ -102,6 +122,20 @@ select:focus{
   background:#f9fafb;
   color:#6b7280;
   font-size:15px;
+}
+
+.extra-info{
+  background:#f9fafb;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  padding:12px 14px;
+  margin-top:5px;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.extra-info strong{
+  color:#111827;
 }
 
 .result{
@@ -213,6 +247,12 @@ button{
   cursor:pointer;
 }
 
+.history-shape{
+  font-size:12px;
+  color:#6b7280;
+  margin-bottom:5px;
+}
+
 .history-dimensions{
   font-size:15px;
   font-weight:700;
@@ -282,6 +322,11 @@ button{
   background:#fff;
 }
 
+.hidden{
+  display:none;
+}
+
+
 @media(max-width:420px){
 
   .wrap{
@@ -319,114 +364,60 @@ button{
     font-size:40px;
   }
 
-  .action-area{
-    gap:8px;
-  }
-
 }
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="wrap">
 
+
   <div class="top">
-    <h1>Metal Plate Weight</h1>
+
+    <h1>
+      Metal Weight
+    </h1>
 
     <div class="sub">
-      Steel Plate Weight Calculator · 铁板重量计算器
+      Metal Weight Calculator · 金属重量计算器
     </div>
+
   </div>
 
 
-  <div class="card install" id="installBox">
+  <div
+    class="card install"
+    id="installBox"
+  >
+
     <button id="installBtn">
       + Install App 安装到手机
     </button>
+
   </div>
 
 
   <div class="card">
 
-    <label>Length 长度</label>
 
-    <div class="row">
+    <label>
+      Shape 类型
+    </label>
 
-      <input
-        id="L"
-        type="number"
-        inputmode="decimal"
-        value="1"
-        step="any"
-      >
+    <div class="shape-row">
 
-      <select id="Lu">
-        <option value="m">Meter (m)</option>
-        <option value="cm">Centimeter (cm)</option>
-        <option value="mm">Millimeter (mm)</option>
-        <option value="ft">Feet (ft)</option>
-        <option value="in">Inch (in)</option>
-      </select>
+      <select id="shape">
 
-    </div>
-
-
-    <label>Width 宽度</label>
-
-    <div class="row">
-
-      <input
-        id="W"
-        type="number"
-        inputmode="decimal"
-        value="1"
-        step="any"
-      >
-
-      <select id="Wu">
-        <option value="m">Meter (m)</option>
-        <option value="cm">Centimeter (cm)</option>
-        <option value="mm">Millimeter (mm)</option>
-        <option value="ft">Feet (ft)</option>
-        <option value="in">Inch (in)</option>
-      </select>
-
-    </div>
-
-
-    <label>Thickness 厚度</label>
-
-    <div class="row">
-
-      <input
-        id="T"
-        type="number"
-        inputmode="decimal"
-        value="1"
-        step="any"
-      >
-
-      <select id="Tu">
-
-        <option value="mm" selected>
-          Millimeter (mm)
+        <option value="plate">
+          Plate 板材
         </option>
 
-        <option value="cm">
-          Centimeter (cm)
-        </option>
-
-        <option value="m">
-          Meter (m)
-        </option>
-
-        <option value="ft">
-          Feet (ft)
-        </option>
-
-        <option value="in">
-          Inch (in)
+        <option value="roundTube">
+          Hollow Round Tube 空心圆管
         </option>
 
       </select>
@@ -434,7 +425,294 @@ button{
     </div>
 
 
-    <label>Quantity 数量</label>
+
+    <!-- PLATE -->
+
+    <div id="plateFields">
+
+
+      <label>
+        Length 长度
+      </label>
+
+      <div class="row">
+
+        <input
+          id="plateL"
+          type="number"
+          inputmode="decimal"
+          value="1"
+          step="any"
+        >
+
+        <select id="plateLu">
+
+          <option value="m">
+            Meter (m)
+          </option>
+
+          <option value="cm">
+            Centimeter (cm)
+          </option>
+
+          <option value="mm">
+            Millimeter (mm)
+          </option>
+
+          <option value="ft">
+            Feet (ft)
+          </option>
+
+          <option value="in">
+            Inch (in)
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <label>
+        Width 宽度
+      </label>
+
+      <div class="row">
+
+        <input
+          id="plateW"
+          type="number"
+          inputmode="decimal"
+          value="1"
+          step="any"
+        >
+
+        <select id="plateWu">
+
+          <option value="m">
+            Meter (m)
+          </option>
+
+          <option value="cm">
+            Centimeter (cm)
+          </option>
+
+          <option value="mm">
+            Millimeter (mm)
+          </option>
+
+          <option value="ft">
+            Feet (ft)
+          </option>
+
+          <option value="in">
+            Inch (in)
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <label>
+        Thickness 厚度
+      </label>
+
+      <div class="row">
+
+        <input
+          id="plateT"
+          type="number"
+          inputmode="decimal"
+          value="1"
+          step="any"
+        >
+
+        <select id="plateTu">
+
+          <option
+            value="mm"
+            selected
+          >
+            Millimeter (mm)
+          </option>
+
+          <option value="cm">
+            Centimeter (cm)
+          </option>
+
+          <option value="m">
+            Meter (m)
+          </option>
+
+          <option value="ft">
+            Feet (ft)
+          </option>
+
+          <option value="in">
+            Inch (in)
+          </option>
+
+        </select>
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- HOLLOW ROUND TUBE -->
+
+    <div
+      id="tubeFields"
+      class="hidden"
+    >
+
+
+      <label>
+        Outer Diameter 外径
+      </label>
+
+      <div class="row">
+
+        <input
+          id="tubeOD"
+          type="number"
+          inputmode="decimal"
+          value="800"
+          step="any"
+        >
+
+        <select id="tubeODu">
+
+          <option value="mm" selected>
+            Millimeter (mm)
+          </option>
+
+          <option value="cm">
+            Centimeter (cm)
+          </option>
+
+          <option value="m">
+            Meter (m)
+          </option>
+
+          <option value="ft">
+            Feet (ft)
+          </option>
+
+          <option value="in">
+            Inch (in)
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <label>
+        Length 长度
+      </label>
+
+      <div class="row">
+
+        <input
+          id="tubeL"
+          type="number"
+          inputmode="decimal"
+          value="1200"
+          step="any"
+        >
+
+        <select id="tubeLu">
+
+          <option value="mm" selected>
+            Millimeter (mm)
+          </option>
+
+          <option value="cm">
+            Centimeter (cm)
+          </option>
+
+          <option value="m">
+            Meter (m)
+          </option>
+
+          <option value="ft">
+            Feet (ft)
+          </option>
+
+          <option value="in">
+            Inch (in)
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <label>
+        Thickness 厚度
+      </label>
+
+      <div class="row">
+
+        <input
+          id="tubeT"
+          type="number"
+          inputmode="decimal"
+          value="5"
+          step="any"
+        >
+
+        <select id="tubeTu">
+
+          <option value="mm" selected>
+            Millimeter (mm)
+          </option>
+
+          <option value="cm">
+            Centimeter (cm)
+          </option>
+
+          <option value="m">
+            Meter (m)
+          </option>
+
+          <option value="ft">
+            Feet (ft)
+          </option>
+
+          <option value="in">
+            Inch (in)
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div class="extra-info">
+
+        Inner Diameter 内径:
+
+        <strong id="innerDiameter">
+          790.000 mm
+        </strong>
+
+      </div>
+
+
+    </div>
+
+
+
+    <br>
+
+
+    <label>
+      Quantity 数量
+    </label>
 
     <div class="quantity-row">
 
@@ -453,10 +731,13 @@ button{
 
     </div>
 
+
   </div>
 
 
+
   <div class="result">
+
 
     <div class="result-item">
 
@@ -464,7 +745,10 @@ button{
         Single Weight 单件重量
       </div>
 
-      <div class="num" id="singleKg">
+      <div
+        class="num"
+        id="singleKg"
+      >
         7.850
       </div>
 
@@ -484,7 +768,10 @@ button{
         Total Weight 总重量
       </div>
 
-      <div class="num" id="totalKg">
+      <div
+        class="num"
+        id="totalKg"
+      >
         7.850
       </div>
 
@@ -494,7 +781,9 @@ button{
 
     </div>
 
+
   </div>
+
 
 
   <div class="action-area">
@@ -517,6 +806,7 @@ button{
 
   </div>
 
+
   <div
     class="saved-message"
     id="savedMessage"
@@ -525,7 +815,9 @@ button{
   </div>
 
 
+
   <div class="card history-card">
+
 
     <div class="history-header">
 
@@ -543,70 +835,134 @@ button{
 
     </div>
 
+
     <div id="historyList"></div>
 
+
   </div>
+
 
 
   <div class="note">
 
     Steel density: 7,850 kg/m³
+
     <br>
 
     钢材密度：7,850 kg/m³
+
     <br>
 
-    Calculated as solid steel volume.
+    Calculated as solid steel material volume.
+
     <br>
 
-    按实心钢材体积计算。
+    按实际钢材体积计算。
 
   </div>
+
 
 </div>
 
 
+
 <script>
 
+
+const density = 7850;
+
+
 const factor = {
-  m: 1,
-  cm: 0.01,
-  mm: 0.001,
-  ft: 0.3048,
-  in: 0.0254
+
+  m:1,
+
+  cm:0.01,
+
+  mm:0.001,
+
+  ft:0.3048,
+
+  in:0.0254
+
 };
 
 
 const unitLabel = {
-  m: 'm',
-  cm: 'cm',
-  mm: 'mm',
-  ft: 'ft',
-  in: 'in'
+
+  m:'m',
+
+  cm:'cm',
+
+  mm:'mm',
+
+  ft:'ft',
+
+  in:'in'
+
 };
 
 
-const lengthInput =
-  document.getElementById('L');
 
-const widthInput =
-  document.getElementById('W');
+const shape =
+  document.getElementById('shape');
 
-const thicknessInput =
-  document.getElementById('T');
+
+const plateFields =
+  document.getElementById('plateFields');
+
+const tubeFields =
+  document.getElementById('tubeFields');
+
+
+
+const plateL =
+  document.getElementById('plateL');
+
+const plateW =
+  document.getElementById('plateW');
+
+const plateT =
+  document.getElementById('plateT');
+
+
+const plateLu =
+  document.getElementById('plateLu');
+
+const plateWu =
+  document.getElementById('plateWu');
+
+const plateTu =
+  document.getElementById('plateTu');
+
+
+
+const tubeOD =
+  document.getElementById('tubeOD');
+
+const tubeL =
+  document.getElementById('tubeL');
+
+const tubeT =
+  document.getElementById('tubeT');
+
+
+const tubeODu =
+  document.getElementById('tubeODu');
+
+const tubeLu =
+  document.getElementById('tubeLu');
+
+const tubeTu =
+  document.getElementById('tubeTu');
+
+
+const innerDiameterBox =
+  document.getElementById('innerDiameter');
+
+
 
 const quantityInput =
   document.getElementById('Q');
-
-
-const lengthUnit =
-  document.getElementById('Lu');
-
-const widthUnit =
-  document.getElementById('Wu');
-
-const thicknessUnit =
-  document.getElementById('Tu');
 
 
 const singleBox =
@@ -632,11 +988,15 @@ const savedMessage =
   document.getElementById('savedMessage');
 
 
+
 function formatWeight(kg){
 
-  if(kg === 0){
+  if(!isFinite(kg) || kg <= 0){
+
     return '0.000';
+
   }
+
 
   if(kg < 1){
 
@@ -650,6 +1010,7 @@ function formatWeight(kg){
 
   }
 
+
   return kg.toLocaleString(
     'en-US',
     {
@@ -661,91 +1022,363 @@ function formatWeight(kg){
 }
 
 
-function getCalculation(){
 
-  const L =
-    parseFloat(lengthInput.value) || 0;
+function changeShape(){
 
-  const W =
-    parseFloat(widthInput.value) || 0;
+  if(shape.value === 'plate'){
 
-  const T =
-    parseFloat(thicknessInput.value) || 0;
+    plateFields.classList.remove(
+      'hidden'
+    );
 
-  let Q =
-    parseInt(quantityInput.value,10) || 1;
+    tubeFields.classList.add(
+      'hidden'
+    );
 
-  if(Q < 1){
-    Q = 1;
+  }
+
+  else{
+
+    plateFields.classList.add(
+      'hidden'
+    );
+
+    tubeFields.classList.remove(
+      'hidden'
+    );
+
   }
 
 
-  const lengthMetres =
-    L * factor[lengthUnit.value];
+  calculateWeight();
 
-  const widthMetres =
-    W * factor[widthUnit.value];
+}
 
-  const thicknessMetres =
-    T * factor[thicknessUnit.value];
+
+
+function calculatePlate(){
+
+  const L =
+    parseFloat(plateL.value) || 0;
+
+  const W =
+    parseFloat(plateW.value) || 0;
+
+  const T =
+    parseFloat(plateT.value) || 0;
+
+
+  const lengthM =
+    L * factor[plateLu.value];
+
+  const widthM =
+    W * factor[plateWu.value];
+
+  const thicknessM =
+    T * factor[plateTu.value];
 
 
   const volume =
-    lengthMetres *
-    widthMetres *
-    thicknessMetres;
+    lengthM *
+    widthM *
+    thicknessM;
 
 
-  const singleKg =
-    volume * 7850;
-
-  const totalKg =
-    singleKg * Q;
+  const weight =
+    volume * density;
 
 
   return {
-    L,
-    W,
-    T,
-    Q,
-    Lu:lengthUnit.value,
-    Wu:widthUnit.value,
-    Tu:thicknessUnit.value,
-    singleKg,
-    totalKg
+
+    valid:
+      L > 0 &&
+      W > 0 &&
+      T > 0,
+
+    singleKg:weight,
+
+    data:{
+
+      L,
+      W,
+      T,
+
+      Lu:plateLu.value,
+      Wu:plateWu.value,
+      Tu:plateTu.value
+
+    }
+
   };
 
 }
 
 
-function calculateWeight(){
 
-  const data =
-    getCalculation();
+function calculateTube(){
 
-  singleBox.textContent =
-    formatWeight(data.singleKg);
+  const OD =
+    parseFloat(tubeOD.value) || 0;
 
-  totalBox.textContent =
-    formatWeight(data.totalKg);
+  const L =
+    parseFloat(tubeL.value) || 0;
+
+  const T =
+    parseFloat(tubeT.value) || 0;
+
+
+  const outerDiameterM =
+    OD * factor[tubeODu.value];
+
+  const lengthM =
+    L * factor[tubeLu.value];
+
+  const thicknessM =
+    T * factor[tubeTu.value];
+
+
+  const innerDiameterM =
+    outerDiameterM -
+    (2 * thicknessM);
+
+
+  if(
+    outerDiameterM <= 0 ||
+    lengthM <= 0 ||
+    thicknessM <= 0 ||
+    innerDiameterM <= 0
+  ){
+
+    innerDiameterBox.textContent =
+      'Invalid 无效';
+
+    return {
+
+      valid:false,
+
+      singleKg:0,
+
+      data:{
+        OD,
+        L,
+        T,
+        ODu:tubeODu.value,
+        Lu:tubeLu.value,
+        Tu:tubeTu.value
+      }
+
+    };
+
+  }
+
+
+  const outerArea =
+    Math.PI *
+    outerDiameterM *
+    outerDiameterM /
+    4;
+
+
+  const innerArea =
+    Math.PI *
+    innerDiameterM *
+    innerDiameterM /
+    4;
+
+
+  const steelArea =
+    outerArea -
+    innerArea;
+
+
+  const volume =
+    steelArea *
+    lengthM;
+
+
+  const weight =
+    volume *
+    density;
+
+
+  const innerDiameterMM =
+    innerDiameterM *
+    1000;
+
+
+  innerDiameterBox.textContent =
+
+    innerDiameterMM.toLocaleString(
+      'en-US',
+      {
+        minimumFractionDigits:3,
+        maximumFractionDigits:3
+      }
+    )
+
+    +
+
+    ' mm';
+
+
+  return {
+
+    valid:true,
+
+    singleKg:weight,
+
+    data:{
+
+      OD,
+      L,
+      T,
+
+      ODu:tubeODu.value,
+      Lu:tubeLu.value,
+      Tu:tubeTu.value,
+
+      innerDiameterMM
+
+    }
+
+  };
 
 }
+
+
+
+function getCalculation(){
+
+  let result;
+
+
+  if(shape.value === 'plate'){
+
+    result =
+      calculatePlate();
+
+  }
+
+  else{
+
+    result =
+      calculateTube();
+
+  }
+
+
+  let Q =
+    parseInt(
+      quantityInput.value,
+      10
+    ) || 1;
+
+
+  if(Q < 1){
+
+    Q = 1;
+
+  }
+
+
+  result.Q =
+    Q;
+
+
+  result.totalKg =
+    result.singleKg *
+    Q;
+
+
+  result.shape =
+    shape.value;
+
+
+  return result;
+
+}
+
+
+
+function calculateWeight(){
+
+  const result =
+    getCalculation();
+
+
+  singleBox.textContent =
+    formatWeight(
+      result.singleKg
+    );
+
+
+  totalBox.textContent =
+    formatWeight(
+      result.totalKg
+    );
+
+}
+
 
 
 function resetForm(){
 
-  lengthInput.value = 1;
-  widthInput.value = 1;
-  thicknessInput.value = 1;
-  quantityInput.value = 1;
+  quantityInput.value =
+    1;
 
-  lengthUnit.value = 'm';
-  widthUnit.value = 'm';
-  thicknessUnit.value = 'mm';
+
+  if(shape.value === 'plate'){
+
+    plateL.value =
+      1;
+
+    plateW.value =
+      1;
+
+    plateT.value =
+      1;
+
+
+    plateLu.value =
+      'm';
+
+    plateWu.value =
+      'm';
+
+    plateTu.value =
+      'mm';
+
+  }
+
+
+  else{
+
+    tubeOD.value =
+      800;
+
+    tubeL.value =
+      1200;
+
+    tubeT.value =
+      5;
+
+
+    tubeODu.value =
+      'mm';
+
+    tubeLu.value =
+      'mm';
+
+    tubeTu.value =
+      'mm';
+
+  }
+
 
   calculateWeight();
 
 }
+
 
 
 function getHistory(){
@@ -753,12 +1386,16 @@ function getHistory(){
   try{
 
     return JSON.parse(
+
       localStorage.getItem(
         'metalWeightHistory'
       )
+
     ) || [];
 
-  }catch(e){
+  }
+
+  catch(e){
 
     return [];
 
@@ -767,27 +1404,28 @@ function getHistory(){
 }
 
 
+
 function saveHistory(history){
 
   localStorage.setItem(
+
     'metalWeightHistory',
+
     JSON.stringify(history)
+
   );
 
 }
 
 
+
 function saveRecord(){
 
-  const data =
+  const result =
     getCalculation();
 
 
-  if(
-    data.L <= 0 ||
-    data.W <= 0 ||
-    data.T <= 0
-  ){
+  if(!result.valid){
 
     alert(
       'Please enter valid dimensions.\n请输入正确尺寸。'
@@ -802,34 +1440,49 @@ function saveRecord(){
     getHistory();
 
 
-  history.unshift({
+  const record = {
 
-    id: Date.now(),
+    id:
+      Date.now(),
 
-    L: data.L,
-    W: data.W,
-    T: data.T,
-    Q: data.Q,
+    shape:
+      result.shape,
 
-    Lu: data.Lu,
-    Wu: data.Wu,
-    Tu: data.Tu,
+    Q:
+      result.Q,
 
-    singleKg: data.singleKg,
-    totalKg: data.totalKg,
+    singleKg:
+      result.singleKg,
+
+    totalKg:
+      result.totalKg,
 
     time:
-      new Date().toLocaleString()
+      new Date().toLocaleString(),
 
-  });
+    data:
+      result.data
+
+  };
+
+
+  history.unshift(
+    record
+  );
 
 
   if(history.length > 50){
-    history.length = 50;
+
+    history.length =
+      50;
+
   }
 
 
-  saveHistory(history);
+  saveHistory(
+    history
+  );
+
 
   renderHistory();
 
@@ -838,14 +1491,18 @@ function saveRecord(){
     'block';
 
 
-  setTimeout(function(){
+  setTimeout(
+    function(){
 
-    savedMessage.style.display =
-      'none';
+      savedMessage.style.display =
+        'none';
 
-  },1500);
+    },
+    1500
+  );
 
 }
+
 
 
 function loadRecord(id){
@@ -853,49 +1510,97 @@ function loadRecord(id){
   const history =
     getHistory();
 
+
   const item =
     history.find(
-      record => record.id === id
+      record =>
+        record.id === id
     );
 
 
   if(!item){
+
     return;
+
   }
 
 
-  lengthInput.value =
-    item.L;
+  shape.value =
+    item.shape;
 
-  widthInput.value =
-    item.W;
 
-  thicknessInput.value =
-    item.T;
+  changeShape();
+
 
   quantityInput.value =
     item.Q;
 
 
-  lengthUnit.value =
-    item.Lu;
+  if(
+    item.shape === 'plate'
+  ){
 
-  widthUnit.value =
-    item.Wu;
+    plateL.value =
+      item.data.L;
 
-  thicknessUnit.value =
-    item.Tu;
+    plateW.value =
+      item.data.W;
+
+    plateT.value =
+      item.data.T;
+
+
+    plateLu.value =
+      item.data.Lu;
+
+    plateWu.value =
+      item.data.Wu;
+
+    plateTu.value =
+      item.data.Tu;
+
+  }
+
+
+  else if(
+    item.shape === 'roundTube'
+  ){
+
+    tubeOD.value =
+      item.data.OD;
+
+    tubeL.value =
+      item.data.L;
+
+    tubeT.value =
+      item.data.T;
+
+
+    tubeODu.value =
+      item.data.ODu;
+
+    tubeLu.value =
+      item.data.Lu;
+
+    tubeTu.value =
+      item.data.Tu;
+
+  }
 
 
   calculateWeight();
 
 
   window.scrollTo({
+
     top:0,
+
     behavior:'smooth'
+
   });
 
 }
+
 
 
 function deleteRecord(id){
@@ -906,15 +1611,20 @@ function deleteRecord(id){
 
   history =
     history.filter(
-      record => record.id !== id
+      record =>
+        record.id !== id
     );
 
 
-  saveHistory(history);
+  saveHistory(
+    history
+  );
+
 
   renderHistory();
 
 }
+
 
 
 function clearHistory(){
@@ -924,7 +1634,9 @@ function clearHistory(){
 
 
   if(history.length === 0){
+
     return;
+
   }
 
 
@@ -935,7 +1647,9 @@ function clearHistory(){
 
 
   if(!answer){
+
     return;
+
   }
 
 
@@ -949,101 +1663,215 @@ function clearHistory(){
 }
 
 
+
 function renderHistory(){
 
   const history =
     getHistory();
 
 
-  historyList.innerHTML = '';
+  historyList.innerHTML =
+    '';
 
 
   if(history.length === 0){
 
     historyList.innerHTML =
-      '<div class="empty-history">No saved records · 暂无历史记录</div>';
+
+      '<div class="empty-history">' +
+      'No saved records · 暂无历史记录' +
+      '</div>';
 
     return;
 
   }
 
 
-  history.forEach(function(item){
-
-    const div =
-      document.createElement('div');
-
-    div.className =
-      'history-item';
+  history.forEach(
+    function(item){
 
 
-    div.innerHTML = `
-
-      <div
-        class="history-main"
-        onclick="loadRecord(${item.id})"
-      >
-
-        <div class="history-dimensions">
-
-          ${item.L} ${unitLabel[item.Lu]}
-          ×
-          ${item.W} ${unitLabel[item.Wu]}
-          ×
-          ${item.T} ${unitLabel[item.Tu]}
-
-        </div>
-
-        <div class="history-info">
-
-          Quantity 数量:
-          ${item.Q} PCS
-
-        </div>
-
-        <div class="history-weight">
-
-          Single:
-          <strong>
-            ${formatWeight(item.singleKg)} KG
-          </strong>
-
-          <br>
-
-          Total:
-          <strong>
-            ${formatWeight(item.totalKg)} KG
-          </strong>
-
-        </div>
-
-      </div>
+      const div =
+        document.createElement(
+          'div'
+        );
 
 
-      <div class="history-bottom">
+      div.className =
+        'history-item';
 
-        <div class="history-time">
-          ${item.time}
-        </div>
 
-        <button
-          class="delete-btn"
-          type="button"
-          onclick="event.stopPropagation();deleteRecord(${item.id})"
+
+      let shapeName =
+        '';
+
+      let dimensions =
+        '';
+
+      let extra =
+        '';
+
+
+
+      if(
+        item.shape === 'plate'
+      ){
+
+        shapeName =
+          'Plate 板材';
+
+
+        dimensions =
+
+          item.data.L +
+          ' ' +
+          unitLabel[item.data.Lu] +
+
+          ' × ' +
+
+          item.data.W +
+          ' ' +
+          unitLabel[item.data.Wu] +
+
+          ' × ' +
+
+          item.data.T +
+          ' ' +
+          unitLabel[item.data.Tu];
+
+      }
+
+
+      else if(
+        item.shape === 'roundTube'
+      ){
+
+        shapeName =
+          'Hollow Round Tube 空心圆管';
+
+
+        dimensions =
+
+          'OD ' +
+
+          item.data.OD +
+          ' ' +
+          unitLabel[item.data.ODu] +
+
+          ' × L ' +
+
+          item.data.L +
+          ' ' +
+          unitLabel[item.data.Lu] +
+
+          ' × T ' +
+
+          item.data.T +
+          ' ' +
+          unitLabel[item.data.Tu];
+
+
+        if(
+          item.data.innerDiameterMM
+        ){
+
+          extra =
+
+            'Inner Diameter 内径: ' +
+
+            item.data.innerDiameterMM
+              .toFixed(3) +
+
+            ' mm<br>';
+
+        }
+
+      }
+
+
+
+      div.innerHTML = `
+
+        <div
+          class="history-main"
+          onclick="loadRecord(${item.id})"
         >
-          Delete 删除
-        </button>
 
-      </div>
+          <div class="history-shape">
+            ${shapeName}
+          </div>
 
-    `;
+          <div class="history-dimensions">
+            ${dimensions}
+          </div>
+
+          <div class="history-info">
+
+            ${extra}
+
+            Quantity 数量:
+            ${item.Q} PCS
+
+          </div>
+
+          <div class="history-weight">
+
+            Single:
+            <strong>
+              ${formatWeight(item.singleKg)} KG
+            </strong>
+
+            <br>
+
+            Total:
+            <strong>
+              ${formatWeight(item.totalKg)} KG
+            </strong>
+
+          </div>
+
+        </div>
 
 
-    historyList.appendChild(div);
+        <div class="history-bottom">
 
-  });
+          <div class="history-time">
+            ${item.time}
+          </div>
+
+          <button
+            class="delete-btn"
+            type="button"
+            onclick="
+              event.stopPropagation();
+              deleteRecord(${item.id})
+            "
+          >
+            Delete 删除
+          </button>
+
+        </div>
+
+      `;
+
+
+      historyList.appendChild(
+        div
+      );
+
+    }
+
+  );
 
 }
+
+
+
+shape.addEventListener(
+  'change',
+  changeShape
+);
+
 
 
 saveBtn.addEventListener(
@@ -1064,113 +1892,154 @@ clearHistoryBtn.addEventListener(
 );
 
 
-[
-  lengthInput,
-  widthInput,
-  thicknessInput,
+
+const allInputs = [
+
+  plateL,
+  plateW,
+  plateT,
+
+  tubeOD,
+  tubeL,
+  tubeT,
+
   quantityInput
-]
-.forEach(function(element){
 
-  element.addEventListener(
-    'input',
-    calculateWeight
-  );
-
-});
+];
 
 
-[
-  lengthUnit,
-  widthUnit,
-  thicknessUnit
-]
-.forEach(function(element){
+allInputs.forEach(
+  function(element){
 
-  element.addEventListener(
-    'change',
-    calculateWeight
-  );
-
-});
-
-
-[
-  lengthInput,
-  widthInput,
-  thicknessInput,
-  quantityInput
-]
-.forEach(function(element){
-
-  element.addEventListener(
-    'focus',
-    function(){
-
-      setTimeout(function(){
-
-        element.select();
-
-      },50);
-
-    }
-  );
-
-
-  element.addEventListener(
-    'click',
-    function(){
-
-      element.select();
-
-    }
-  );
-
-});
-
-
-let deferredPrompt = null;
-
-
-const installBox =
-  document.getElementById('installBox');
-
-const installBtn =
-  document.getElementById('installBtn');
-
-
-window.addEventListener(
-  'beforeinstallprompt',
-  function(e){
-
-    e.preventDefault();
-
-    deferredPrompt = e;
-
-    installBox.style.display =
-      'block';
+    element.addEventListener(
+      'input',
+      calculateWeight
+    );
 
   }
 );
 
 
+
+const allSelects = [
+
+  plateLu,
+  plateWu,
+  plateTu,
+
+  tubeODu,
+  tubeLu,
+  tubeTu
+
+];
+
+
+allSelects.forEach(
+  function(element){
+
+    element.addEventListener(
+      'change',
+      calculateWeight
+    );
+
+  }
+);
+
+
+
+allInputs.forEach(
+  function(element){
+
+    element.addEventListener(
+      'focus',
+      function(){
+
+        setTimeout(
+          function(){
+
+            element.select();
+
+          },
+          50
+        );
+
+      }
+    );
+
+
+    element.addEventListener(
+      'click',
+      function(){
+
+        element.select();
+
+      }
+    );
+
+  }
+);
+
+
+
+let deferredPrompt =
+  null;
+
+
+const installBox =
+  document.getElementById(
+    'installBox'
+  );
+
+
+const installBtn =
+  document.getElementById(
+    'installBtn'
+  );
+
+
+window.addEventListener(
+
+  'beforeinstallprompt',
+
+  function(e){
+
+    e.preventDefault();
+
+    deferredPrompt =
+      e;
+
+    installBox.style.display =
+      'block';
+
+  }
+
+);
+
+
 installBtn.addEventListener(
+
   'click',
+
   async function(){
 
     if(deferredPrompt){
 
       deferredPrompt.prompt();
 
-      deferredPrompt = null;
+      deferredPrompt =
+        null;
 
     }
 
   }
+
 );
 
 
-if('serviceWorker' in navigator){
+
+if(
+  'serviceWorker' in navigator
+){
 
   navigator.serviceWorker.register(
     'sw.js'
@@ -1179,11 +2048,14 @@ if('serviceWorker' in navigator){
 }
 
 
-calculateWeight();
+
+changeShape();
 
 renderHistory();
+
 
 </script>
 
 </body>
+
 </html>

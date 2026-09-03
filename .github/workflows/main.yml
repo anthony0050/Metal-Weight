@@ -125,14 +125,29 @@ jobs:
       - name: Create Technoair Splash Screen
         run: |
           mkdir -p android/app/src/main/res/drawable
+          mkdir -p android/app/src/main/res/drawable-port
+          mkdir -p android/app/src/main/res/drawable-land
 
           convert app_icon.png \
-            -resize 420x420 \
+            -resize 460x460 \
             -gravity center \
             -background white \
             -extent 1080x1920 \
             android/app/src/main/res/drawable/splash.png
 
+          convert app_icon.png \
+            -resize 460x460 \
+            -gravity center \
+            -background white \
+            -extent 1080x1920 \
+            android/app/src/main/res/drawable-port/splash.png
+
+          convert app_icon.png \
+            -resize 460x460 \
+            -gravity center \
+            -background white \
+            -extent 1920x1080 \
+            android/app/src/main/res/drawable-land/splash.png
 
       - name: Set Android Version
         run: |
